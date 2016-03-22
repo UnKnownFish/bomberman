@@ -4,23 +4,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Player {
-
     private PlayerCommand command;
-
     private PlayerCommand lastCommand;
 
     private double positionX;
-
     private double positionY;
-
     private double speed;
 
-    private List<Bomb> bombs = new LinkedList<Bomb>();
+    private int bombTickDuration;
+    private int bombExplosionDuration;
 
-    public Player(double positionX, double positionY, double speed) {
+    private final List<Bomb> bombs = new LinkedList<Bomb>();
+
+    public Player(double positionX, double positionY, double playerSpeed, int bombTickDuration, int bombExplosionDuration) {
         this.positionX = positionX;
         this.positionY = positionY;
-        this.speed = speed;
+        this.speed = playerSpeed;
+        this.bombTickDuration = bombTickDuration;
+        this.bombExplosionDuration = bombExplosionDuration;
     }
 
     public void setNextCommand(PlayerCommand nextCommand) {
@@ -49,7 +50,10 @@ public class Player {
         } else if (command == PlayerCommand.RIGHT) {
             x = x + distance;
         } else if (command == PlayerCommand.BOMB) {
-            // TODO Add new bomb to player
+            Long bombX = Math.round(this.positionX);
+            Long bombY = Math.round(this.positionY);
+            Bomb bomb = new Bomb(bombX.intValue(), bombY.intValue(), this.bombTickDuration, this.bombExplosionDuration);
+            bombs.add(bomb);
         }
 
         this.positionX = x;
