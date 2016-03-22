@@ -1,22 +1,61 @@
 package com.uawebchallenge.bomberman.game;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Player {
 
-    private final LinkedList<PlayerCommand> commandsLog = new LinkedList<PlayerCommand>();
+    private PlayerCommand command;
 
-    // TODO Store current player position
+    private PlayerCommand lastCommand;
 
-    public synchronized void addCommand(PlayerCommand playerCommand) {
-        commandsLog.add(playerCommand);
+    private double positionX;
+
+    private double positionY;
+
+    private double speed;
+
+    private List<Bomb> bombs = new LinkedList<Bomb>();
+
+    public Player(double positionX, double positionY, double speed) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.speed = speed;
     }
 
-    public PlayerCommand getLatestCommand() {
-        return commandsLog.getLast();
+    public void setNextCommand(PlayerCommand nextCommand) {
+        this.command = nextCommand;
     }
 
-    public synchronized void clearCommandsLog() {
-        commandsLog.clear();
+    public PlayerCommand getLastCommand() {
+        return lastCommand;
+    }
+
+    public List<Bomb> getBombs() {
+        return bombs;
+    }
+
+    public void executeCommand(int time) {
+        double distance = time * this.speed;
+        double x = this.positionX;
+        double y = this.positionY;
+
+        if (command == PlayerCommand.UP) {
+            y = y - distance;
+        } else if (command == PlayerCommand.DOWN) {
+            y = y + distance;
+        } else if (command == PlayerCommand.LEFT) {
+            x = x - distance;
+        } else if (command == PlayerCommand.RIGHT) {
+            x = x + distance;
+        } else if (command == PlayerCommand.BOMB) {
+            // TODO Add new bomb to player
+        }
+
+        this.positionX = x;
+        this.positionY = y;
+
+        this.lastCommand = command;
+        this.command = null;
     }
 }
