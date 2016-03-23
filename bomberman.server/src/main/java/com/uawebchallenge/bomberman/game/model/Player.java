@@ -1,4 +1,4 @@
-package com.uawebchallenge.bomberman.game;
+package com.uawebchallenge.bomberman.game.model;
 
 import java.util.LinkedList;
 import java.util.List;
