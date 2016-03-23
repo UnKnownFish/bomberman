@@ -2,7 +2,9 @@ package com.uawebchallenge.bomberman.game.control;
 
 import com.uawebchallenge.bomberman.game.model.Game;
 
-public interface GameRunner {
+public interface GameManager {
 
-    void run(Game game);
+    Game createNewGame();
+
+    Game getGame(String gameId);
 }

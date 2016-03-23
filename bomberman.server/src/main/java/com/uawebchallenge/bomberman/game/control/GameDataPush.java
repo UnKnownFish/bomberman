@@ -1,7 +1,6 @@
 package com.uawebchallenge.bomberman.game.control;
 
-public class GameDataPush {
+public interface GameDataPush {
 
-    public void push(String gameId, String data) {
-    }
+    void push(String gameId, String data);
 }

@@ -7,6 +7,7 @@ public class Game {
     private final Config config;
 
     private final String gameId;
+    private boolean over;
 
     public Game(Config config) {
         this.config = config;

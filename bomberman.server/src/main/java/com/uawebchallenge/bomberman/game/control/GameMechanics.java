@@ -1,4 +1,4 @@
 package com.uawebchallenge.bomberman.game.control;
 
-public class GameMechanics {
+public interface GameMechanics {
 }
