@@ -14,7 +14,7 @@ public class Player {
     private int bombTickDuration;
     private int bombExplosionDuration;
 
-    private final List<Bomb> bombs = new LinkedList<Bomb>();
+    private final List<Bomb> bombs = new LinkedList<>();
 
     public Player(double positionX, double positionY, double playerSpeed, int bombTickDuration, int bombExplosionDuration) {
         this.positionX = positionX;
