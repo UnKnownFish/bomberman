@@ -19,6 +19,8 @@ public class GameRunnable implements Runnable {
 
     @Override
     public void run() {
+        gameMechanics.updateGameState(game);
+
         if (game.isOver()) {
             executorService.shutdown();
         }

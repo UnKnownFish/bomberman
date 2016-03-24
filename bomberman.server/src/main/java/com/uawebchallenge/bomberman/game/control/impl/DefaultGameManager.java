@@ -2,12 +2,14 @@ package com.uawebchallenge.bomberman.game.control.impl;
 
 import com.uawebchallenge.bomberman.game.control.GameManager;
 import com.uawebchallenge.bomberman.game.control.GameRunner;
-import com.uawebchallenge.bomberman.game.model.Config;
-import com.uawebchallenge.bomberman.game.model.Game;
+import com.uawebchallenge.bomberman.game.model.*;
+import com.uawebchallenge.bomberman.game.utils.GameFieldGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -23,9 +25,15 @@ public class DefaultGameManager implements GameManager {
     }
 
     public Game createNewGame() {
-        Game game = new Game(Config.DEFAULT);
-        // Generate default field
-        // Add player and bot
+        GameConfig gameConfig = GameConfig.DEFAULT;
+
+        GameField gameField = GameFieldGenerator.generateGameField(gameConfig.getFieldSize());
+        // TODO Add bots for the player
+        Player player = new Player(gameConfig, 0, 0, PlayerType.HUMAN);
+        List<Player> playerList = new LinkedList<>();
+        playerList.add(player);
+
+        Game game = new Game(gameConfig, gameField, playerList);
 
         games.put(game.getGameId(), game);
         gameRunner.run(game);

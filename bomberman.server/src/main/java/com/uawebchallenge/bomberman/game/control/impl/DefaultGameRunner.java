@@ -22,7 +22,7 @@ public class DefaultGameRunner implements GameRunner {
 
     public void run(Game game) {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        final int time = game.getConfig().getTime();
+        final int time = game.getGameConfig().getTimeBetweenFrames();
         final GameRunnable gameRunnable = new GameRunnable(gameMechanics, game, scheduler);
 
         scheduler.scheduleAtFixedRate(gameRunnable, 0, time, TimeUnit.MILLISECONDS);
