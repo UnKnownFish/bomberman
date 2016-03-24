@@ -6,5 +6,7 @@ public interface GameManager {
 
     Game createNewGame();
 
+    void startGame(Game game);
+
     Game getGame(String gameId);
 }

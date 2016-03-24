@@ -2,9 +2,11 @@ package com.uawebchallenge.bomberman.game.control.impl;
 
 import com.uawebchallenge.bomberman.game.control.GameManager;
 import com.uawebchallenge.bomberman.game.control.GameRunner;
-import com.uawebchallenge.bomberman.game.model.*;
+import com.uawebchallenge.bomberman.game.model.Game;
+import com.uawebchallenge.bomberman.game.model.GameConfig;
+import com.uawebchallenge.bomberman.game.model.GameField;
+import com.uawebchallenge.bomberman.game.model.Player;
 import com.uawebchallenge.bomberman.game.utils.GameFieldGenerator;
-import com.uawebchallenge.bomberman.game.utils.JsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +25,6 @@ public class DefaultGameManager implements GameManager {
     @Autowired
     public DefaultGameManager(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
-        createNewGame();
     }
 
     public Game createNewGame() {
@@ -31,16 +32,17 @@ public class DefaultGameManager implements GameManager {
 
         GameField gameField = GameFieldGenerator.generateGameField(gameConfig.getFieldSize());
         // TODO Add bots for the player
-        Player player = new Player(gameConfig, 0, 0, PlayerType.HUMAN);
+        Player player = new Player(gameConfig, 0, 0);
         List<Player> playerList = new LinkedList<>();
         playerList.add(player);
 
         Game game = new Game(gameConfig, gameField, playerList);
-
         games.put(game.getGameId(), game);
-        gameRunner.run(game);
-
         return game;
+    }
+
+    public void startGame(Game game) {
+        gameRunner.run(game);
     }
 
     public Game getGame(String gameId) {
