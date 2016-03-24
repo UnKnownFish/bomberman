@@ -1,7 +1,9 @@
 package com.uawebchallenge.bomberman.config;
 
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-@ComponentScan("com.uawebchallenge.game.control")
+@Configuration
+@ComponentScan("com.uawebchallenge.bomberman.game.control")
 public class ApplicationConfig {
 }
