@@ -8,7 +8,7 @@ import java.util.List;
 public class Player {
 
     private final String playerId;
-    private final PlayerType playerType;
+    private PlayerType playerType;
 
     private PlayerCommand nextCommand;
     private PlayerCommand lastCommand;
@@ -23,18 +23,22 @@ public class Player {
 
     private final List<Bomb> bombs = new LinkedList<>();
 
-    public Player(GameConfig gameConfig, double initialPositionX, double initialPositionY, PlayerType playerType) {
+    public Player(GameConfig gameConfig, double initialPositionX, double initialPositionY) {
         this.positionX = initialPositionX;
         this.positionY = initialPositionY;
         this.speed = gameConfig.getPlayerSpeed();
         this.timeBetweenFrames = gameConfig.getTimeBetweenFrames();
         this.bombTickDuration = gameConfig.getBombTickDuration();
         this.bombExplosionDuration = gameConfig.getBombExplosionDuration();
-        this.playerType = playerType;
+        this.playerType = PlayerType.AI;
         this.playerId = IdGenerator.playerId();
     }
     public String getPlayerId() {
         return playerId;
+    }
+
+    public void setPlayerType(PlayerType playerType) {
+        this.playerType = playerType;
     }
 
     public PlayerType getPlayerType() {

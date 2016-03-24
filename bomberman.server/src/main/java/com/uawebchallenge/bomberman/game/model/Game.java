@@ -38,4 +38,17 @@ public class Game {
     public List<Player> getPlayerList() {
         return playerList;
     }
+
+    public Player connectHuman() {
+        for (Player player : playerList) {
+            if (PlayerType.AI == player.getPlayerType()) {
+                player.setPlayerType(PlayerType.HUMAN);
+                return player;
+            }
+        }
+
+        // So far game is only expecting 1 player to play it. But it will be very easy for other player to join same game
+        // When I get to it - I will change code to use Optional<T> instead of throwing exception
+        throw new IllegalStateException("There are no free players in this game. GameId=" + gameId);
+    }
 }
