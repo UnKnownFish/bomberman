@@ -15,6 +15,7 @@ import lombok.Value;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JsonBuilder {
 
@@ -30,7 +31,6 @@ public class JsonBuilder {
         GameJsonView gameJsonView = new GameJsonView(game);
         return mapper.writeValueAsString(gameJsonView);
     }
-
 
     private static class GameFieldItemSerializer extends JsonSerializer<GameFieldItem> {
 
@@ -58,10 +58,10 @@ public class JsonBuilder {
             this.fieldItems = game.getGameField().getFieldItems();
             this.playerJsonViews = new LinkedList<>();
 
-            for (Player player : game.getPlayerList()) {
-                PlayerJsonView playerJsonView = new PlayerJsonView(player.getPlayerId(), player.getPositionX(), player.getPositionY());
-                this.playerJsonViews.add(playerJsonView);
-            }
+            List<Player> playerList = game.getPlayerList();
+            this.playerJsonViews = playerList.stream()
+                    .map(p -> new PlayerJsonView(p.getPlayerId(), p.getPositionX(), p.getPositionY()))
+                    .collect(Collectors.toList());
         }
     }
 }

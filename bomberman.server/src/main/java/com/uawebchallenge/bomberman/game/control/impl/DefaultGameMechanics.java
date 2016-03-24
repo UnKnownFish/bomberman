@@ -29,9 +29,7 @@ public class DefaultGameMechanics implements GameMechanics {
     public void updateGameState(Game game) {
         List<Player> playerList = game.getPlayerList();
 
-        for (Player player : playerList) {
-            player.executeCommand();
-        }
+        playerList.stream().forEach(Player::executeCommand);
 
         push(game);
     }

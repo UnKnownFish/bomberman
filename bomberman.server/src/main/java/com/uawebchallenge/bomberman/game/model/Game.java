@@ -3,6 +3,8 @@ package com.uawebchallenge.bomberman.game.model;
 import com.uawebchallenge.bomberman.game.utils.IdGenerator;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -10,12 +12,14 @@ public class Game {
     private final GameConfig gameConfig;
     private final GameField gameField;
     private final List<Player> playerList;
+    private final Map<String, Player> playerMap;
     private boolean over;
 
     public Game(GameConfig gameConfig, GameField gameField, List<Player> playerList) {
         this.gameConfig = gameConfig;
         this.gameField = gameField;
         this.playerList = playerList;
+        this.playerMap = playerList.stream().collect(Collectors.toMap(Player::getPlayerId, p -> p));
         this.gameId = IdGenerator.gameId();
     }
 
@@ -37,6 +41,10 @@ public class Game {
 
     public List<Player> getPlayerList() {
         return playerList;
+    }
+
+    public Player getPlayer(String playerId) {
+        return playerMap.get(playerId);
     }
 
     public Player connectHuman() {
