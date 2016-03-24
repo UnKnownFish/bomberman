@@ -13,7 +13,6 @@ import com.uawebchallenge.bomberman.game.model.Player;
 import lombok.Value;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +55,6 @@ public class JsonBuilder {
 
         public GameJsonView(Game game) {
             this.fieldItems = game.getGameField().getFieldItems();
-            this.playerJsonViews = new LinkedList<>();
 
             List<Player> playerList = game.getPlayerList();
             this.playerJsonViews = playerList.stream()
