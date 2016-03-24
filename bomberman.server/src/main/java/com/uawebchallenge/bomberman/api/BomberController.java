@@ -26,7 +26,6 @@ public class BomberController {
         Game newGame = gameManager.createNewGame();
         Player player = newGame.connectHuman();
         gameManager.startGame(newGame);
-        NewGameResponse response = new NewGameResponse(newGame.getGameId(), player.getPlayerId());
-        return response;
+        return new NewGameResponse(newGame.getGameId(), player.getPlayerId());
     }
 }
