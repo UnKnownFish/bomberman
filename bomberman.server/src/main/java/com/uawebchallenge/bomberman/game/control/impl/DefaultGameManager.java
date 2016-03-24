@@ -4,6 +4,7 @@ import com.uawebchallenge.bomberman.game.control.GameManager;
 import com.uawebchallenge.bomberman.game.control.GameRunner;
 import com.uawebchallenge.bomberman.game.model.*;
 import com.uawebchallenge.bomberman.game.utils.GameFieldGenerator;
+import com.uawebchallenge.bomberman.game.utils.JsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,7 @@ public class DefaultGameManager implements GameManager {
     @Autowired
     public DefaultGameManager(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
+        createNewGame();
     }
 
     public Game createNewGame() {

@@ -57,6 +57,14 @@ public class Player {
         return bombs;
     }
 
+    public double getPositionX() {
+        return positionX;
+    }
+
+    public double getPositionY() {
+        return positionY;
+    }
+
     public void executeCommand() {
         double distance = this.timeBetweenFrames * this.speed;
         double x = this.positionX;

@@ -23,6 +23,10 @@ public class Game {
         return gameConfig;
     }
 
+    public GameField getGameField() {
+        return gameField;
+    }
+
     public String getGameId() {
         return gameId;
     }

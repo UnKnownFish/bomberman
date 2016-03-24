@@ -7,4 +7,8 @@ public class GameField {
     public GameField(GameFieldItem[][] fieldItems) {
         this.fieldItems = fieldItems;
     }
+
+    public GameFieldItem[][] getFieldItems() {
+        return fieldItems;
+    }
 }
