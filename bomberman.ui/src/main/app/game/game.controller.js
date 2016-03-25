@@ -44,7 +44,7 @@ export default class GameController {
     rangeTo(max) {
         const min = 0;
         let input = [];
-        for (var i = min; i <= max; i ++) {
+        for (var i = min; i < max; i ++) {
             input.push(i);
         }
         return input;
