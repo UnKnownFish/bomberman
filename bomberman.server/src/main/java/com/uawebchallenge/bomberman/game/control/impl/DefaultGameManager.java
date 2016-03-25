@@ -32,7 +32,7 @@ public class DefaultGameManager implements GameManager {
 
         GameField gameField = GameFieldGenerator.generateGameField(gameConfig.getFieldWidth(), gameConfig.getFieldHeight());
         // TODO Add bots for the player
-        Player player = new Player(gameConfig, 0, 0);
+        Player player = new Player(0, 0);
         List<Player> playerList = new LinkedList<>();
         playerList.add(player);
 

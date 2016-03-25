@@ -2,37 +2,22 @@ package com.uawebchallenge.bomberman.game.model;
 
 import com.uawebchallenge.bomberman.game.utils.IdGenerator;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Collections;
 
 public class Player {
 
     private final String playerId;
     private PlayerType playerType;
 
-    private PlayerCommand nextCommand;
-    private PlayerCommand lastCommand;
+    private PlayerState nextPlayerState;
+    private PlayerState currentPlayerState;
 
-    private double positionX;
-    private double positionY;
-    private double speed;
-
-    private int timeBetweenFrames;
-    private int bombTickDuration;
-    private int bombExplosionDuration;
-
-    private final List<Bomb> bombs = new LinkedList<>();
-
-    public Player(GameConfig gameConfig, double initialPositionX, double initialPositionY) {
-        this.positionX = initialPositionX;
-        this.positionY = initialPositionY;
-        this.speed = gameConfig.getPlayerSpeed();
-        this.timeBetweenFrames = gameConfig.getTimeBetweenFrames();
-        this.bombTickDuration = gameConfig.getBombTickDuration();
-        this.bombExplosionDuration = gameConfig.getBombExplosionDuration();
+    public Player(double initialPositionX, double initialPositionY) {
+        this.currentPlayerState = new PlayerState(initialPositionX, initialPositionY, Collections.<Bomb>emptyList());
         this.playerType = PlayerType.AI;
         this.playerId = IdGenerator.playerId();
     }
+
     public String getPlayerId() {
         return playerId;
     }
@@ -45,54 +30,26 @@ public class Player {
         return playerType;
     }
 
-    public void setNextCommand(PlayerCommand nextCommand) {
-        this.nextCommand = nextCommand;
-    }
-
-    public PlayerCommand getNextCommand() {
-        return nextCommand;
-    }
-
-    public PlayerCommand getLastCommand() {
-        return lastCommand;
-    }
-
-    public List<Bomb> getBombs() {
-        return bombs;
-    }
-
     public double getPositionX() {
-        return positionX;
+        return currentPlayerState.getPositionX();
     }
 
     public double getPositionY() {
-        return positionY;
+        return currentPlayerState.getPositionY();
     }
 
-    public void executeCommand() {
-        double distance = this.timeBetweenFrames * this.speed;
-        double x = this.positionX;
-        double y = this.positionY;
+    public void setNextPlayerState(PlayerState nextPlayerState) {
+        this.nextPlayerState = nextPlayerState;
+    }
 
-        if (nextCommand == PlayerCommand.UP) {
-            y = y - distance;
-        } else if (nextCommand == PlayerCommand.DOWN) {
-            y = y + distance;
-        } else if (nextCommand == PlayerCommand.LEFT) {
-            x = x - distance;
-        } else if (nextCommand == PlayerCommand.RIGHT) {
-            x = x + distance;
-        } else if (nextCommand == PlayerCommand.BOMB) {
-            Long bombX = Math.round(this.positionX);
-            Long bombY = Math.round(this.positionY);
-            Bomb bomb = new Bomb(bombX.intValue(), bombY.intValue(), this.bombTickDuration, this.bombExplosionDuration);
-            bombs.add(bomb);
+    public PlayerState getCurrentPlayerState() {
+        return currentPlayerState;
+    }
+
+    public void updatePlayerState() {
+        if (nextPlayerState != null) {
+            this.currentPlayerState = nextPlayerState;
+            this.nextPlayerState = null;
         }
-
-        this.positionX = x;
-        this.positionY = y;
-
-        this.lastCommand = nextCommand;
-        this.nextCommand = null;
     }
 }

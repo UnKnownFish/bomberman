@@ -63,6 +63,7 @@ public class Game {
             throw new IllegalStateException("There are no free players in this game. GameId=" + gameId);
         }
 
+        player.setPlayerType(PlayerType.HUMAN);
         return player;
     }
 }

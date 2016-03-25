@@ -1,10 +1,7 @@
 package com.uawebchallenge.bomberman.api;
 
 import com.uawebchallenge.bomberman.game.control.GameManager;
-import com.uawebchallenge.bomberman.game.model.Game;
-import com.uawebchallenge.bomberman.game.model.GameConfig;
-import com.uawebchallenge.bomberman.game.model.Player;
-import com.uawebchallenge.bomberman.game.model.PlayerCommand;
+import com.uawebchallenge.bomberman.game.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,6 +37,7 @@ public class BomberController {
         PlayerCommand playerCommand = PlayerCommand.getCommand(request.getCommand());
         Game game = gameManager.getGame(gameId);
         Player player = game.getPlayer(playerId);
-        player.setNextCommand(playerCommand);
+        PlayerState newPlayerState = PlayerStateEbator.execute(playerCommand, player.getCurrentPlayerState(), game.getGameField(), game.getGameConfig());
+        player.setNextPlayerState(newPlayerState);
     }
 }
