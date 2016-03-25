@@ -9,7 +9,9 @@ export default class GameController {
         this.model = {
             gameId: null,
             playerId: null,
-            gameField: null
+            gameField: null,
+            fieldWidth: 0,
+            fieldHeight: 0
         };
 
        this.createNewGame();
@@ -21,6 +23,8 @@ export default class GameController {
                 this.log.info("New game was created successfully. Game details: " + JSON.stringify(response.data));
                 this.model.gameId = response.data.gameId;
                 this.model.playerId = response.data.playerId;
+                this.model.fieldHeight = response.data.fieldHeight;
+                this.model.fieldWidth = response.data.fieldWidth;
                 this.listenGameChange();
             })
             .catch((error) => {
@@ -36,4 +40,13 @@ export default class GameController {
             this.scope.$digest();
         });
     }
+
+    rangeTo(max) {
+        const min = 0;
+        let input = [];
+        for (var i = min; i <= max; i ++) {
+            input.push(i);
+        }
+        return input;
+    };
 }

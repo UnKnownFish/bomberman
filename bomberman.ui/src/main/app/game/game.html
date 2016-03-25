@@ -1,9 +1,9 @@
 <h1>Bomberman</h1>
 <table>
     <tbody>
-    <tr ng-repeat="row in gameCtrl.model.gameField">
-        <td ng-repeat="v in row track by $index">
-           {{v}}
+    <tr ng-repeat="i in gameCtrl.rangeTo(gameCtrl.model.fieldHeight)">
+        <td ng-repeat="j in gameCtrl.rangeTo(gameCtrl.model.fieldWidth)">
+           / {{gameCtrl.model.gameField[i][j]}} /
         </td>
     </tr>
     </tbody>
