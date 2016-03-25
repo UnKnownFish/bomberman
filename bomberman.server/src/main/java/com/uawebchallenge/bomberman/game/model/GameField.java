@@ -11,4 +11,9 @@ public class GameField {
     public GameFieldItem[][] getFieldItems() {
         return fieldItems;
     }
+
+    public GameFieldItem getFieldItem(int x, int y) {
+        // TODO Protect from index overflow
+        return fieldItems[y][x];
+    }
 }
