@@ -1,8 +1,9 @@
 
 export default class GameController {
-    constructor($log, gameService) {
+    constructor($log, $scope, gameService) {
         "ngInject";
         this.log = $log;
+        this.scope = $scope;
         this.gameService = gameService;
         this.model = {
             gameId: null,
@@ -10,7 +11,7 @@ export default class GameController {
             gameField: null
         };
 
-        this.createNewGame();
+       this.createNewGame();
     }
 
     createNewGame() {
@@ -28,9 +29,9 @@ export default class GameController {
 
     listenGameChange() {
         this.gameService.listenGameChange(this.model.gameId, (data) => {
-            this.log.info(new Date());
+            this.model.gameField = data.field;
+            console.log(JSON.stringify(data.field));
+            this.scope.$apply();
         });
     }
-
-
 }

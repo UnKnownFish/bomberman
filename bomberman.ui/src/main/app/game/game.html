@@ -1,1 +1,10 @@
 <h1>Bomberman</h1>
+<table>
+    <tbody>
+    <tr ng-repeat="row in gameCtrl.model.gameField">
+        <td ng-repeat="v in row track by $index">
+           {{v}}
+        </td>
+    </tr>
+    </tbody>
+</table>

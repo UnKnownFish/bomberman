@@ -28,7 +28,7 @@ export default class GameService {
             this.log.debug("Listeting to topic '" + topicId + "'");
 
             this.wsClient.subscribe(topicId, function(result){
-                callback(JSON.parse(result.body));
+                callback(JSON.parse(JSON.parse(result.body)));
             });
         });
     }
