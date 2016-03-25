@@ -2,6 +2,7 @@ package com.uawebchallenge.bomberman.api;
 
 import com.uawebchallenge.bomberman.game.control.GameManager;
 import com.uawebchallenge.bomberman.game.model.Game;
+import com.uawebchallenge.bomberman.game.model.GameConfig;
 import com.uawebchallenge.bomberman.game.model.Player;
 import com.uawebchallenge.bomberman.game.model.PlayerCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,11 @@ public class BomberController {
     @ResponseStatus(HttpStatus.CREATED)
     public NewGameResponse createNewGame() {
         Game newGame = gameManager.createNewGame();
+        GameConfig gameConfig = newGame.getGameConfig();
         Player player = newGame.connectHuman();
         gameManager.startGame(newGame);
-        return new NewGameResponse(newGame.getGameId(), player.getPlayerId());
+
+        return new NewGameResponse(newGame.getGameId(), player.getPlayerId(), gameConfig.getFieldWidth(), gameConfig.getFieldHeight());
     }
 
     @RequestMapping(path = "/game/{gameId}/player/{playerId}/command", method = RequestMethod.POST)
