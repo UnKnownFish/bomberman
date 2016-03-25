@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-public class BomberController {
+public class GameRestService {
 
     private final GameManager gameManager;
 
     @Autowired
-    public BomberController(GameManager gameManager) {
+    public GameRestService(GameManager gameManager) {
         this.gameManager = gameManager;
     }
 
