@@ -35,8 +35,12 @@ public class Game {
         return gameId;
     }
 
+    public void setOver(boolean over) {
+        this.over = over;
+    }
+
     public boolean isOver() {
-        return false;
+        return over;
     }
 
     public List<Player> getPlayerList() {
@@ -48,15 +52,17 @@ public class Game {
     }
 
     public Player connectHuman() {
-        for (Player player : playerList) {
-            if (PlayerType.AI == player.getPlayerType()) {
-                player.setPlayerType(PlayerType.HUMAN);
-                return player;
-            }
+        Player player = playerList.stream()
+                .filter(p -> PlayerType.AI == p.getPlayerType())
+                .findFirst()
+                .get();
+
+        if (player == null) {
+            // So far game is only expecting 1 player to play it. But it will be very easy for other player to join same game
+            // When I get to it - I will change code to use Optional<T> instead of throwing exception
+            throw new IllegalStateException("There are no free players in this game. GameId=" + gameId);
         }
 
-        // So far game is only expecting 1 player to play it. But it will be very easy for other player to join same game
-        // When I get to it - I will change code to use Optional<T> instead of throwing exception
-        throw new IllegalStateException("There are no free players in this game. GameId=" + gameId);
+        return player;
     }
 }
