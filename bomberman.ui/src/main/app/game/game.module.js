@@ -6,6 +6,8 @@ import GameService from "./game.service.js";
 import GameWsClient from "./game.ws.client.js";
 import digest from "./../digest/digest.module.js";
 
+import "./../resources/style.css";
+
 let gameModule = angular.module("game", [digest])
     .controller("GameController", GameController)
     .service("gameService", GameService)

@@ -1,10 +1,14 @@
 <h1>Bomberman</h1>
-<table>
-    <tbody>
-    <tr ng-repeat="i in gameCtrl.rangeTo(gameCtrl.model.fieldHeight)">
-        <td ng-repeat="j in gameCtrl.rangeTo(gameCtrl.model.fieldWidth)">
-           / {{gameCtrl.model.gameField[i][j]}} /
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div class="game">
+    <div class="player1" style="{{gameCtrl.playerStyle(0)}}" ng-if="gameCtrl.model.players"></div>
+    <table>
+        <tbody>
+        <tr ng-repeat="i in gameCtrl.rangeTo(gameCtrl.model.fieldHeight)">
+            <td ng-repeat="j in gameCtrl.rangeTo(gameCtrl.model.fieldWidth)"
+                class="gameCtrl.fieldClass(i,j)">
+                <div ng-class="gameCtrl.fieldClass(i,j)"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

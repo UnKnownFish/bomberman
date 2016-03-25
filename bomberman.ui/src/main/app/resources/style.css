@@ -1,0 +1,27 @@
+.game {
+    position: relative;
+}
+
+.item {
+    width: 32px;
+    height: 32px;
+}
+
+.block {
+    background-image: url("./img/block.png");
+}
+
+.stone {
+    background-image: url("./img/stone.png");
+}
+
+.empty {
+    background-image: url("./img/empty.png");
+}
+
+.player1 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url("./img/player1.png");
+}
