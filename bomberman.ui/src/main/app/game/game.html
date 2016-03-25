@@ -1,14 +1,16 @@
-<h1>Bomberman</h1>
-<div class="game">
-    <div class="player1" style="{{gameCtrl.playerStyle(0)}}" ng-if="gameCtrl.model.players"></div>
-    <table>
-        <tbody>
-        <tr ng-repeat="i in gameCtrl.rangeTo(gameCtrl.model.fieldHeight)">
-            <td ng-repeat="j in gameCtrl.rangeTo(gameCtrl.model.fieldWidth)"
-                class="gameCtrl.fieldClass(i,j)">
-                <div ng-class="gameCtrl.fieldClass(i,j)"></div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="header"></div>
+<div class="game-wrapper">
+    <div class="game">
+        <div class="player1" style="{{gameCtrl.playerStyle(0)}}" ng-if="gameCtrl.model.players"></div>
+        <table>
+            <tbody>
+            <tr ng-repeat="i in gameCtrl.rangeTo(gameCtrl.model.fieldHeight)">
+                <td ng-repeat="j in gameCtrl.rangeTo(gameCtrl.model.fieldWidth)"
+                    class="gameCtrl.fieldClass(i,j)">
+                    <div ng-class="gameCtrl.fieldClass(i,j)"></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,3 +1,14 @@
+.header {
+    width: 459px;
+    height: 118px;
+    background-image: url("./img/logo.png");
+}
+
+.game-wrapper {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
 .game {
     position: relative;
 }
