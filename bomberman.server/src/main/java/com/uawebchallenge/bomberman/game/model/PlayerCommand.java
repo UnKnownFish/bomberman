@@ -1,7 +1,12 @@
 package com.uawebchallenge.bomberman.game.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import java.util.Arrays;
 
+@AllArgsConstructor
+@Getter
 public enum PlayerCommand {
 
     LEFT("left"),
@@ -11,14 +16,6 @@ public enum PlayerCommand {
     BOMB("bomb");
 
     private String command;
-
-    PlayerCommand(String command) {
-        this.command = command;
-    }
-
-    public String getCommand() {
-        return command;
-    }
 
     public static PlayerCommand getCommand(String command) {
         PlayerCommand playerCommand = Arrays.stream(PlayerCommand.values())
