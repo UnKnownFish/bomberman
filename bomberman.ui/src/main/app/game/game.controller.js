@@ -104,7 +104,7 @@ export default class GameController {
     }
 
     move(command) {
-        this.log.info("Firing command. Command=" + command);
+        //this.gameWsClient.sendCommand(this.model.gameId, this.model.playerId, command);
         this.gameService.sendCommand(this.model.gameId, this.model.playerId, command);
     }
 }

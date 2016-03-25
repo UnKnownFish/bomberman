@@ -24,6 +24,7 @@ export default class GameWsClient {
         const headers = {};
         const successCallback = () => {
             this.log.info("Connected to '/bomberman/ws' endpoint. Gratz!")
+            this.connected = true;
             deferred.resolve();
         };
         const failureCallback = () => {
@@ -45,5 +46,18 @@ export default class GameWsClient {
                     callback(JSON.parse(JSON.parse(result.body)));
                 });
             });
+    }
+
+    sendCommand(gameId, playerId, commandCode) {
+        if(this.connected) {
+            const url = "/ws/game/" + gameId + "/player/" + playerId + "/command";
+            const command = {
+                command: commandCode
+            };
+
+            const header = {};
+
+            this.client.send(url, header, JSON.stringify(command));
+        }
     }
 }
