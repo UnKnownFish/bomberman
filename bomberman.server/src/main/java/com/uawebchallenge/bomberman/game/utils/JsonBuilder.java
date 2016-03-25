@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.uawebchallenge.bomberman.game.model.Game;
 import com.uawebchallenge.bomberman.game.model.GameFieldItem;
 import com.uawebchallenge.bomberman.game.model.Player;
+import lombok.Value;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,24 +38,20 @@ public class JsonBuilder {
         }
     }
 
+    @Value
     private static class PlayerJsonView {
-        public String id;
-        public double x;
-        public double y;
-
-        public PlayerJsonView(String id, double x, double y) {
-            this.id = id;
-            this.x = x;
-            this.y = y;
-        }
+        private final String id;
+        private final double x;
+        private final double y;
     }
 
+    @Value
     private static class GameJsonView {
         @JsonProperty("players")
-        public List<PlayerJsonView> playerJsonViews;
+        private final List<PlayerJsonView> playerJsonViews;
 
         @JsonProperty("field")
-        public GameFieldItem[][] fieldItems;
+        private final GameFieldItem[][] fieldItems;
 
         public GameJsonView(Game game) {
             this.fieldItems = game.getGameField().getFieldItems();

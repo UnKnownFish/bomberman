@@ -1,5 +1,10 @@
 package com.uawebchallenge.bomberman.game.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum GameFieldItem {
 
     EMPTY(0),
@@ -13,12 +18,4 @@ public enum GameFieldItem {
     GRAVE(5);
 
     private int itemId;
-
-    GameFieldItem(int itemId) {
-        this.itemId = itemId;
-    }
-
-    public int getItemId() {
-        return itemId;
-    }
 }
