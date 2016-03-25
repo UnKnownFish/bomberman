@@ -28,7 +28,7 @@ public class DefaultGameManager implements GameManager {
     }
 
     public Game createNewGame() {
-        GameConfig gameConfig = GameConfig.DEFAULT;
+        GameConfig gameConfig = new GameConfig();
 
         GameField gameField = GameFieldGenerator.generateGameField(gameConfig.getFieldSize());
         // TODO Add bots for the player
