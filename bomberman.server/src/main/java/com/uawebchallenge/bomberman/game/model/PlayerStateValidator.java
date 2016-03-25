@@ -1,5 +1,7 @@
 package com.uawebchallenge.bomberman.game.model;
 
+import java.util.Optional;
+
 public class PlayerStateValidator {
 
     static boolean isStateValid(PlayerCommand playerCommand, PlayerState playerState, GameField gameField, GameConfig gameConfig) {
@@ -19,12 +21,13 @@ public class PlayerStateValidator {
             maxX = (int) Math.ceil(positionX);
         }
 
-        GameFieldItem fieldItem = gameField.getFieldItem(maxX, maxY);
+        Optional<GameFieldItem> fieldItemOptional = gameField.getFieldItem(maxX, maxY);
 
-        if (fieldItem == GameFieldItem.STONE || fieldItem == GameFieldItem.BLOCK) {
+        if (!fieldItemOptional.isPresent() ||
+                fieldItemOptional.get() == GameFieldItem.STONE ||
+                fieldItemOptional.get() == GameFieldItem.BLOCK) {
             return false;
         }
-
 
         return true;
     }
