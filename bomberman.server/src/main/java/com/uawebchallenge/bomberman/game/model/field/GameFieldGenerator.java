@@ -2,7 +2,7 @@ package com.uawebchallenge.bomberman.game.model.field;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GameFieldGenerator {
+class GameFieldGenerator {
 
     public static GameFieldItem[][] generateGameField(int width, int height) {
         GameFieldItem[][] fieldItems = new GameFieldItem[height][width];

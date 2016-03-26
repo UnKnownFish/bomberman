@@ -11,8 +11,8 @@ import static org.junit.Assert.assertThat;
 
 public class GameFieldGeneratorTest {
 
-    public static final int CLASSIC_WIDTH = 13;
-    public static final int CLASSIC_HEIGHT = 11;
+    private static final int CLASSIC_WIDTH = 13;
+    private static final int CLASSIC_HEIGHT = 11;
 
     private GameFieldItem[][] fieldItems;
 
