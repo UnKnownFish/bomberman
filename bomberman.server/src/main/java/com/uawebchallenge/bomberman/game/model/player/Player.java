@@ -1,5 +1,6 @@
-package com.uawebchallenge.bomberman.game.model;
+package com.uawebchallenge.bomberman.game.model.player;
 
+import com.uawebchallenge.bomberman.game.model.bomb.Bomb;
 import com.uawebchallenge.bomberman.game.utils.IdGenerator;
 
 import java.util.Collections;

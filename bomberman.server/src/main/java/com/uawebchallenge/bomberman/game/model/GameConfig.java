@@ -12,6 +12,7 @@ public class GameConfig {
 
     private final int bombTickDuration;
     private final int bombExplosionDuration;
+    private final int maxBombs;
 
     public GameConfig() {
         timeBetweenFrames = 50;
@@ -20,5 +21,6 @@ public class GameConfig {
         bombExplosionDuration = 1000;
         fieldWidth = 13;
         fieldHeight = 11;
+        maxBombs = 1;
     }
 }

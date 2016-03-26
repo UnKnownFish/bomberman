@@ -1,4 +1,4 @@
-package com.uawebchallenge.bomberman.game.utils;
+package com.uawebchallenge.bomberman.game.control.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -8,15 +8,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.uawebchallenge.bomberman.game.model.Game;
-import com.uawebchallenge.bomberman.game.model.GameFieldItem;
-import com.uawebchallenge.bomberman.game.model.Player;
+import com.uawebchallenge.bomberman.game.model.field.GameFieldItem;
+import com.uawebchallenge.bomberman.game.model.player.Player;
 import lombok.Value;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JsonBuilder {
+class JsonBuilder {
 
     private final static ObjectMapper mapper = new ObjectMapper();
 

@@ -1,13 +1,13 @@
-package com.uawebchallenge.bomberman.game.model;
+package com.uawebchallenge.bomberman.game.model.field;
 
 import java.util.Optional;
 
 public class GameField {
 
-    private GameFieldItem[][] fieldItems;
+    private final GameFieldItem[][] fieldItems;
 
-    public GameField(GameFieldItem[][] fieldItems) {
-        this.fieldItems = fieldItems;
+    public GameField(int width, int height) {
+        this.fieldItems = GameFieldGenerator.generateGameField(width, height);
     }
 
     public GameFieldItem[][] getFieldItems() {

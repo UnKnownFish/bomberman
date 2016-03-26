@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 
-public class GameRunnable implements Runnable {
+class GameRunnable implements Runnable {
 
     private final ExecutorService executorService;
     private final GameMechanics gameMechanics;

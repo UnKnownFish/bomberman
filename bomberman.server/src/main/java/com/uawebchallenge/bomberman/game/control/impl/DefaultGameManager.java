@@ -4,9 +4,8 @@ import com.uawebchallenge.bomberman.game.control.GameManager;
 import com.uawebchallenge.bomberman.game.control.GameRunner;
 import com.uawebchallenge.bomberman.game.model.Game;
 import com.uawebchallenge.bomberman.game.model.GameConfig;
-import com.uawebchallenge.bomberman.game.model.GameField;
-import com.uawebchallenge.bomberman.game.model.Player;
-import com.uawebchallenge.bomberman.game.utils.GameFieldGenerator;
+import com.uawebchallenge.bomberman.game.model.field.GameField;
+import com.uawebchallenge.bomberman.game.model.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,7 @@ import java.util.Map;
 @Component
 public class DefaultGameManager implements GameManager {
 
-    private Map<String, Game> games = new HashMap<>();
+    private final Map<String, Game> games = new HashMap<>();
 
     private final GameRunner gameRunner;
 
@@ -30,7 +29,7 @@ public class DefaultGameManager implements GameManager {
     public Game createNewGame() {
         GameConfig gameConfig = new GameConfig();
 
-        GameField gameField = GameFieldGenerator.generateGameField(gameConfig.getFieldWidth(), gameConfig.getFieldHeight());
+        GameField gameField = new GameField(gameConfig.getFieldWidth(), gameConfig.getFieldHeight());
         // TODO Add bots for the player
         Player player = new Player(0, 0);
         List<Player> playerList = new LinkedList<>();

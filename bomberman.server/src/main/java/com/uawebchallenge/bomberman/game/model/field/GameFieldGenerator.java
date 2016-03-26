@@ -1,13 +1,10 @@
-package com.uawebchallenge.bomberman.game.utils;
-
-import com.uawebchallenge.bomberman.game.model.GameField;
-import com.uawebchallenge.bomberman.game.model.GameFieldItem;
+package com.uawebchallenge.bomberman.game.model.field;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameFieldGenerator {
 
-    public static GameField generateGameField(int width, int height) {
+    public static GameFieldItem[][] generateGameField(int width, int height) {
         GameFieldItem[][] fieldItems = new GameFieldItem[height][width];
 
         for (int row = 0; row < height; row++) {
@@ -23,7 +20,7 @@ public class GameFieldGenerator {
                 }
             }
         }
-        return new GameField(fieldItems);
+        return fieldItems;
     }
 
     private static boolean isPlayerIsland(int row, int col, int width, int height) {

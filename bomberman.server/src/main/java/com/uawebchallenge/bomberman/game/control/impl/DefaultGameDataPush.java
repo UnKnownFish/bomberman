@@ -21,10 +21,6 @@ public class DefaultGameDataPush implements GameDataPush{
 
     @Override
     public void push(String gameId, String data) {
-//        logger.info("Pushing data for gameId=" + gameId);
-//        logger.info(data);
-//        logger.info("--------------------------------------");
-
         String topic = "/topic/" + gameId;
         messagingTemplate.convertAndSend(topic, data);
     }

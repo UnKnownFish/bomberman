@@ -1,4 +1,4 @@
-package com.uawebchallenge.bomberman.game.model;
+package com.uawebchallenge.bomberman.game.model.bomb;
 
 public class Bomb {
     private final int positionX;

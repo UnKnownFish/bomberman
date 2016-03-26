@@ -1,5 +1,8 @@
 package com.uawebchallenge.bomberman.game.model;
 
+import com.uawebchallenge.bomberman.game.model.field.GameField;
+import com.uawebchallenge.bomberman.game.model.player.Player;
+import com.uawebchallenge.bomberman.game.model.player.PlayerType;
 import com.uawebchallenge.bomberman.game.utils.IdGenerator;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.uawebchallenge.bomberman.game.model;
+package com.uawebchallenge.bomberman.game.model.field;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

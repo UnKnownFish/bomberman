@@ -1,11 +1,14 @@
-package com.uawebchallenge.bomberman.game.model;
+package com.uawebchallenge.bomberman.game.model.player;
+
+import com.uawebchallenge.bomberman.game.model.bomb.Bomb;
+import com.uawebchallenge.bomberman.game.model.GameConfig;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class PlayerCommandExecutor {
+class PlayerStateChanger {
 
-    public static PlayerState execute(PlayerCommand playerCommand, PlayerState oldPlayerState, GameConfig gameConfig) {
+    PlayerState change(PlayerCommand playerCommand, PlayerState oldPlayerState, GameConfig gameConfig) {
         double distance = gameConfig.getTimeBetweenFrames() * gameConfig.getPlayerSpeed();
 
         double x = oldPlayerState.getPositionX();
