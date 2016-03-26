@@ -14,6 +14,11 @@
     position: relative;
 }
 
+.game-table{
+    background-image: url("./img/empty.png") ;
+    background-repeat: repeat;
+}
+
 .item {
     width: 32px;
     height: 32px;
@@ -29,6 +34,22 @@
 
 .empty {
     background-image: url("./img/empty.png");
+}
+
+.bomb_cold {
+    background-image: url("./img/bomb_cold.png");
+}
+
+.bomb_warm {
+    background-image: url("./img/bomb_warm.png");
+}
+
+.bomb_hot {
+    background-image: url("./img/bomb_hot.png");
+}
+
+.bomb_explosion {
+    background-image: url("./img/bomb_explosion.png");
 }
 
 .player1 {
