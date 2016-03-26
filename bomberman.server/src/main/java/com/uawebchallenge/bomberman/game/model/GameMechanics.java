@@ -10,8 +10,8 @@ public class GameMechanics {
 
     private final BombManager bombManager;
 
-    public GameMechanics(BombManager bombManager) {
-        this.bombManager = bombManager;
+    public GameMechanics() {
+        this.bombManager = new BombManager();
     }
 
     public void updateGameState(Game game) {
