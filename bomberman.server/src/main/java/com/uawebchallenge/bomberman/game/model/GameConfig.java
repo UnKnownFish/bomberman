@@ -18,8 +18,6 @@ public class GameConfig {
         playerSpeed = 0.004;
         bombTickDuration = 3000;
         bombExplosionDuration = 1000;
-//        fieldWidth = 13;
-//        fieldHeight = 11;
         fieldWidth = 13;
         fieldHeight = 11;
     }
