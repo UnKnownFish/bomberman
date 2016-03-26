@@ -25,6 +25,12 @@ public class GameRestService {
         return gameService.createNewGame();
     }
 
+    @RequestMapping(path = "/games/{gameId}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.CREATED)
+    public NewGameData connectToGame(@PathVariable String gameId) {
+        return gameService.connectToGame(gameId);
+    }
+
     @RequestMapping(path = "/game/{gameId}/player/{playerId}/command", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void addCommand(@PathVariable String gameId,

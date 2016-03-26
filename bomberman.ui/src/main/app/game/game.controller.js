@@ -31,7 +31,7 @@ export default class GameController {
             this.model.maxBombs = data.maxBombs;
             this.scope.$digest();
 
-            if (data.gameOver) {
+            if (data.gameOver || this.isPlayerDead()) {
                 this.gameOver();
             }
         });
@@ -129,5 +129,12 @@ export default class GameController {
     bombIndicatorWidthStyle() {
         var width = "width:" + (this.model.maxBombs * 32) + "px";
         return width;
+    }
+
+    isPlayerDead() {
+        const player = this.model.players.filter((p) => {
+            return p.id == this.model.playerId
+        })[0];
+        return player.dead;
     }
 }

@@ -29,4 +29,23 @@ export default class MainController {
             })
     }
 
+    connect(gameId) {
+        this.gameService.connectToGame(gameId)
+            .then((response) => {
+                this.log.info("New game was created successfully. Game details: " + JSON.stringify(response.data));
+                const gameId = response.data.gameId;
+                const playerId = response.data.playerId;
+                this.gameConfig.setFieldHeight(response.data.fieldHeight);
+                this.gameConfig.setFieldWidth(response.data.fieldWidth);
+
+                const url = "/game/" + gameId + "/player/" + playerId;
+                this.location.path(url);
+            })
+            .catch((response) => {
+                this.log.error("Can't connect to game. GameId=" + gameId + ". Error:");
+                this.log.error(response);
+                this.error = "Unfortunately connection to game server couldn't be established. " +
+                    "Please contact yevgen.kravchenko@gmail.com"
+            })
+    }
 }

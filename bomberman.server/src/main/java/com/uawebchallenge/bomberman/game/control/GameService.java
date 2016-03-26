@@ -7,4 +7,6 @@ public interface GameService {
     NewGameData createNewGame();
 
     void addCommand(String gameId, String playerId, PlayerCommand playerCommand);
+
+    NewGameData connectToGame(String gameId);
 }

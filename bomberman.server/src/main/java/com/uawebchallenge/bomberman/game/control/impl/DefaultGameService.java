@@ -35,6 +35,14 @@ public class DefaultGameService implements GameService {
     }
 
     @Override
+    public NewGameData connectToGame(String gameId) {
+        Game game = gameManager.getGame(gameId);
+        Player player = game.connectHuman();
+        GameConfig gameConfig = game.getGameConfig();
+        return new NewGameData(game.getGameId(), player.getPlayerId(), gameConfig.getFieldWidth(), gameConfig.getFieldHeight());
+    }
+
+    @Override
     public void addCommand(String gameId, String playerId, PlayerCommand playerCommand) {
         Game game = gameManager.getGame(gameId);
         Player player = game.getPlayer(playerId);

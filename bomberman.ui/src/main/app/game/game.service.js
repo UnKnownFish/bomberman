@@ -10,6 +10,10 @@ export default class GameService {
         return this.http.post("/bomberman/api/games", {});
     }
 
+    connectToGame(gameId) {
+        return this.http.put("/bomberman/api/games/" + gameId, {});
+    }
+
     sendCommand(gameId, playerId, command) {
         const url = "/bomberman/api/game/" + gameId + "/player/" + playerId + "/command";
         return this.http.post(url, {
