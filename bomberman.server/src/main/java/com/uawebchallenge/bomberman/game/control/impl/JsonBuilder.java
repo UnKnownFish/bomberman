@@ -43,6 +43,7 @@ class JsonBuilder {
         private final String id;
         private final double x;
         private final double y;
+        private final boolean dead;
     }
 
     @Value
@@ -53,13 +54,17 @@ class JsonBuilder {
         @JsonProperty("field")
         private final GameFieldItem[][] fieldItems;
 
+        @JsonProperty("gameOver")
+        private final boolean gameOver;
+
         public GameJsonView(Game game) {
             this.fieldItems = game.getGameField().getFieldItems();
 
             List<Player> playerList = game.getPlayerList();
             this.playerJsonViews = playerList.stream()
-                    .map(p -> new PlayerJsonView(p.getPlayerId(), p.getPositionX(), p.getPositionY()))
+                    .map(p -> new PlayerJsonView(p.getPlayerId(), p.getPositionX(), p.getPositionY(), p.isDead()))
                     .collect(Collectors.toList());
+            this.gameOver = game.isOver();
         }
     }
 }

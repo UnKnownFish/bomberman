@@ -1,9 +1,11 @@
 export default class GameController {
-    constructor($log, $stateParams, $scope, $document, gameConfig, gameService, gameWsClient) {
+    constructor($log, $stateParams, $scope, $document, $location, $timeout, gameConfig, gameService, gameWsClient) {
         "ngInject";
         this.log = $log;
         this.scope = $scope;
         this.document = $document;
+        this.location = $location;
+        this.timeout = $timeout;
 
         this.gameService = gameService;
         this.gameWsClient = gameWsClient;
@@ -14,7 +16,7 @@ export default class GameController {
             fieldWidth: gameConfig.getFieldWidth(),
             fieldHeight: gameConfig.getFieldHeight(),
             gameField: null,
-            players: null
+            players: null,
         };
 
         this.listenKeyPress();
@@ -25,8 +27,11 @@ export default class GameController {
         this.gameWsClient.listen(this.model.gameId, (data) => {
             this.model.gameField = data.field;
             this.model.players = data.players;
-            //console.log(JSON.stringify(data));
             this.scope.$digest();
+
+            if (data.gameOver) {
+                this.gameOver();
+            }
         });
     }
 
@@ -63,7 +68,7 @@ export default class GameController {
         }
     }
 
-    playerStyle(playerIndex) {
+    playerPositionStyle(playerIndex) {
         if (this.model.players) {
             const player = this.model.players[playerIndex];
             const x = player.x;
@@ -72,6 +77,15 @@ export default class GameController {
             const positionX = 32 * x;
             const positionY = 32 * y;
             return "transform: translate3d(" + positionX + "px," + positionY + "px, 0)";
+        }
+        return null;
+    }
+
+    playerClass(playerIndex) {
+        if (this.model.players) {
+            const player = this.model.players[playerIndex];
+            const playerClass = "player" + (playerIndex + 1);
+            return (!player.dead) ? playerClass : "grave";
         }
         return null;
     }
@@ -102,5 +116,11 @@ export default class GameController {
     executeCommand(command) {
         //this.gameWsClient.sendCommand(this.model.gameId, this.model.playerId, command);
         this.gameService.sendCommand(this.model.gameId, this.model.playerId, command);
+    }
+
+    gameOver() {
+        this.timeout(() => {
+            this.location.path("/gameover");
+        }, 5000);
     }
 }

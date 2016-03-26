@@ -59,6 +59,13 @@
     background-image: url("./img/player1.png");
 }
 
+.grave {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url("./img/grave.png");
+}
+
 .main-wrapper {
     width: 459px;
     margin: auto;
