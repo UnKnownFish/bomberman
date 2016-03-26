@@ -15,8 +15,7 @@
 }
 
 .game-table {
-    background-image: url("./img/empty.png");
-    background-repeat: repeat;
+    background: url("./img/empty.png") repeat;
 }
 
 .item {
@@ -101,4 +100,10 @@
 .callout-error {
     border-left-color: #FF0000;
     color: #FF0000;
+}
+
+.bomb-indicator {
+    max-width: 320px;
+    height: 32px;
+    background: url("./img/bomb_indicator.png") repeat-x;
 }

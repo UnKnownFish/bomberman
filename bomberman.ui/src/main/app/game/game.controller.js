@@ -17,6 +17,7 @@ export default class GameController {
             fieldHeight: gameConfig.getFieldHeight(),
             gameField: null,
             players: null,
+            maxBombs: 1
         };
 
         this.listenKeyPress();
@@ -27,6 +28,7 @@ export default class GameController {
         this.gameWsClient.listen(this.model.gameId, (data) => {
             this.model.gameField = data.field;
             this.model.players = data.players;
+            this.model.maxBombs = data.maxBombs;
             this.scope.$digest();
 
             if (data.gameOver) {
@@ -122,5 +124,10 @@ export default class GameController {
         this.timeout(() => {
             this.location.path("/gameover");
         }, 2500);
+    }
+
+    bombIndicatorWidthStyle() {
+        var width = "width:" + (this.model.maxBombs * 32) + "px";
+        return width;
     }
 }

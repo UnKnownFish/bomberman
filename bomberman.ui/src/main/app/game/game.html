@@ -1,6 +1,9 @@
 <div class="main-wrapper">
     <div class="header"></div>
     <div class="game-wrapper">
+        <div class="bomb-indicator" style="{{gameCtrl.bombIndicatorWidthStyle()}}">
+        </div>
+
         <div class="game">
             <div class="{{gameCtrl.playerClass(0)}}" style="{{gameCtrl.playerPositionStyle(0)}}"
                  ng-if="gameCtrl.model.players"></div>

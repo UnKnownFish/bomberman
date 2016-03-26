@@ -57,6 +57,9 @@ class JsonBuilder {
         @JsonProperty("gameOver")
         private final boolean gameOver;
 
+        @JsonProperty("maxBombs")
+        private final int maxBombs;
+
         public GameJsonView(Game game) {
             this.fieldItems = game.getGameField().getFieldItems();
 
@@ -65,6 +68,7 @@ class JsonBuilder {
                     .map(p -> new PlayerJsonView(p.getPlayerId(), p.getPositionX(), p.getPositionY(), p.isDead()))
                     .collect(Collectors.toList());
             this.gameOver = game.isOver();
+            this.maxBombs = game.getGameConfig().getMaxBombs();
         }
     }
 }
