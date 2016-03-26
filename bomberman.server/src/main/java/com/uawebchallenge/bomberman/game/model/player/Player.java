@@ -28,8 +28,8 @@ public class Player {
         return playerId;
     }
 
-    public void setPlayerType(PlayerType playerType) {
-        this.playerType = playerType;
+    public void setHuman() {
+        this.playerType = PlayerType.HUMAN;
     }
 
     public PlayerType getPlayerType() {
