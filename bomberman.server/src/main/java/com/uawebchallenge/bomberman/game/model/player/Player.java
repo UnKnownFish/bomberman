@@ -1,6 +1,7 @@
 package com.uawebchallenge.bomberman.game.model.player;
 
 import com.uawebchallenge.bomberman.game.model.bomb.Bomb;
+import com.uawebchallenge.bomberman.game.model.field.Coordinate;
 import com.uawebchallenge.bomberman.game.utils.IdGenerator;
 
 import java.util.Collections;
@@ -13,6 +14,8 @@ public class Player {
 
     private PlayerState nextPlayerState;
     private PlayerState currentPlayerState;
+
+    private boolean dead;
 
     public Player(double initialPositionX, double initialPositionY) {
         this.currentPlayerState = new PlayerState(initialPositionX, initialPositionY, Collections.<Bomb>emptyList());
@@ -55,10 +58,24 @@ public class Player {
         return Collections.emptyList();
     }
 
+    public Coordinate getGridCoordinate() {
+        int x = (int) Math.round(getPositionX());
+        int y = (int) Math.round(getPositionY());
+        return new Coordinate(x, y);
+    }
+
     public void updateState() {
         if (nextPlayerState != null) {
             this.currentPlayerState = nextPlayerState;
             this.nextPlayerState = null;
         }
+    }
+
+    public void die() {
+        this.dead = true;
+    }
+
+    public boolean isDead() {
+        return dead;
     }
 }

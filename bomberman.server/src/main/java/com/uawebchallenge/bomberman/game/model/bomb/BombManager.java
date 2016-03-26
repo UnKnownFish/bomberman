@@ -4,6 +4,9 @@ import com.uawebchallenge.bomberman.game.model.GameConfig;
 import com.uawebchallenge.bomberman.game.model.field.GameField;
 import com.uawebchallenge.bomberman.game.model.field.GameFieldItem;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class BombManager {
 
     private final ExplosionFootprintBuilder explosionFootprintBuilder = new ExplosionFootprintBuilder();
@@ -20,6 +23,14 @@ public class BombManager {
             } else {
                 gameField.setFieldItems(explosionFootprint.getCoordinates(), GameFieldItem.EMPTY);
             }
+        }
+    }
+
+    public void clearBombs(List<Bomb> playerBombs) {
+        if (playerBombs != null && playerBombs.size() > 0) {
+            List<Bomb> activeBombs = playerBombs.stream().filter(Bomb::isActive).collect(Collectors.toList());
+            playerBombs.clear();
+            playerBombs.addAll(activeBombs);
         }
     }
 

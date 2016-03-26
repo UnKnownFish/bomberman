@@ -38,8 +38,8 @@ public class Game {
         return gameId;
     }
 
-    public void setOver(boolean over) {
-        this.over = over;
+    public void setOver() {
+        this.over = true;
     }
 
     public boolean isOver() {
