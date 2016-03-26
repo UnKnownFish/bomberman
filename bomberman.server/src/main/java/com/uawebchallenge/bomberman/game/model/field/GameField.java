@@ -1,6 +1,6 @@
 package com.uawebchallenge.bomberman.game.model.field;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 
 public class GameField {
@@ -28,7 +28,7 @@ public class GameField {
         }
     }
 
-    public void setFieldItems(List<Position> coordinates, GameFieldItem fieldItem) {
+    public void setFieldItems(Collection<Coordinate> coordinates, GameFieldItem fieldItem) {
         if (coordinates != null) {
             coordinates.stream().forEach(c -> setFieldItem(c.getX(), c.getY(), fieldItem));
         }
