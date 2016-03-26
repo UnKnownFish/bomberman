@@ -30,7 +30,7 @@ class PlayerStateChanger {
         } else if (playerCommand == PlayerCommand.BOMB) {
             Long bombX = Math.round(x);
             Long bombY = Math.round(y);
-            Bomb bomb = new Bomb(bombX.intValue(), bombY.intValue(), gameConfig.getBombTickDuration(), gameConfig.getBombExplosionDuration());
+            Bomb bomb = new Bomb(bombX.intValue(), bombY.intValue(), gameConfig);
             bombs.add(bomb);
         }
 

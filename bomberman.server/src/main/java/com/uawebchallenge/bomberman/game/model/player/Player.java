@@ -4,6 +4,7 @@ import com.uawebchallenge.bomberman.game.model.bomb.Bomb;
 import com.uawebchallenge.bomberman.game.utils.IdGenerator;
 
 import java.util.Collections;
+import java.util.List;
 
 public class Player {
 
@@ -47,7 +48,14 @@ public class Player {
         return currentPlayerState;
     }
 
-    public void updatePlayerState() {
+    public List<Bomb> getBombs() {
+        if (currentPlayerState != null && currentPlayerState.getBombs() != null) {
+            return currentPlayerState.getBombs();
+        }
+        return Collections.emptyList();
+    }
+
+    public void updateState() {
         if (nextPlayerState != null) {
             this.currentPlayerState = nextPlayerState;
             this.nextPlayerState = null;
