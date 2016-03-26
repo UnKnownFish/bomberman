@@ -1,6 +1,6 @@
 package com.uawebchallenge.bomberman.game.control.impl;
 
-import com.uawebchallenge.bomberman.game.control.GameMechanics;
+import com.uawebchallenge.bomberman.game.control.GameDataPush;
 import com.uawebchallenge.bomberman.game.control.GameRunner;
 import com.uawebchallenge.bomberman.game.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,17 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class DefaultGameRunner implements GameRunner {
 
-    private final GameMechanics gameMechanics;
+    private final GameDataPush gameDataPush;
 
     @Autowired
-    public DefaultGameRunner(GameMechanics gameMechanics) {
-        this.gameMechanics = gameMechanics;
+    public DefaultGameRunner(GameDataPush gameDataPush) {
+        this.gameDataPush = gameDataPush;
     }
 
     public void run(Game game) {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         final int time = game.getGameConfig().getTimeBetweenFrames();
-        final GameRunnable gameRunnable = new GameRunnable(gameMechanics, game, scheduler);
+        final GameRunnable gameRunnable = new GameRunnable(game, scheduler, gameDataPush);
         scheduler.scheduleAtFixedRate(gameRunnable, 0, time, TimeUnit.MILLISECONDS);
     }
 }
