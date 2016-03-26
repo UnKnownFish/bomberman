@@ -25,6 +25,6 @@ public class GameConfig {
         fieldWidth = 13;
         fieldHeight = 11;
         maxBombs = 1;
-        bombStrength = 3;
+        bombStrength = 2;
     }
 }
