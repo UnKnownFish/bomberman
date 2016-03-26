@@ -26,7 +26,5 @@ public class GameMechanics {
                     bomb.updateTimer();
                     bombManager.placeBomb(bomb, game.getGameField(), game.getGameConfig());
                 });
-
-
     }
 }
