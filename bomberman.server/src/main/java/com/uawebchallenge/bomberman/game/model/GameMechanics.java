@@ -39,16 +39,16 @@ public class GameMechanics {
             if (!fieldItem.isPresent() || fieldItem.get() == GameFieldItem.EXPLOSION) {
                 player.die();
             }
-
             bombManager.clearBombs(player.getBombs());
         });
 
         // Update game state. Check if its not over yet
-        long livingPlayers = playerList.stream()
-                .filter(p -> p.getPlayerType() == PlayerType.HUMAN && !p.isDead())
+        long activeHumanPlayers = playerList.stream()
+                .filter(p ->
+                        p.getPlayerType() == PlayerType.HUMAN && !p.isDead() && p.getIdleIterationsCount() < game.getGameConfig().getIdleIterationsThreshold())
                 .count();
 
-        if (livingPlayers == 0) {
+        if (activeHumanPlayers == 0) {
             game.setOver();
         }
 

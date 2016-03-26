@@ -16,6 +16,7 @@ public class Player {
     private PlayerState currentPlayerState;
 
     private boolean dead;
+    private long idleIterationsCount;
 
     public Player(double initialPositionX, double initialPositionY) {
         this.currentPlayerState = new PlayerState(initialPositionX, initialPositionY, Collections.<Bomb>emptyList());
@@ -65,10 +66,17 @@ public class Player {
     }
 
     public void updateState() {
+        updateIdleIterationsCount();
+
         if (nextPlayerState != null) {
             this.currentPlayerState = nextPlayerState;
             this.nextPlayerState = null;
         }
+    }
+
+    private void updateIdleIterationsCount() {
+        boolean idleIteration = nextPlayerState == null || nextPlayerState.equals(currentPlayerState);
+        this.idleIterationsCount = idleIteration ? idleIterationsCount + 1 : 0;
     }
 
     public void die() {
@@ -77,5 +85,9 @@ public class Player {
 
     public boolean isDead() {
         return dead;
+    }
+
+    public long getIdleIterationsCount() {
+        return idleIterationsCount;
     }
 }
