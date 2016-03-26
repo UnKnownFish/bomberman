@@ -114,13 +114,13 @@ export default class GameController {
     }
 
     executeCommand(command) {
-        //this.gameWsClient.sendCommand(this.model.gameId, this.model.playerId, command);
-        this.gameService.sendCommand(this.model.gameId, this.model.playerId, command);
+        this.gameWsClient.sendCommand(this.model.gameId, this.model.playerId, command);
+        //this.gameService.sendCommand(this.model.gameId, this.model.playerId, command);
     }
 
     gameOver() {
         this.timeout(() => {
             this.location.path("/gameover");
-        }, 5000);
+        }, 2500);
     }
 }
