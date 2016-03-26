@@ -133,3 +133,11 @@
     height: 32px;
     background: url("./img/bomb_indicator.png") repeat-x;
 }
+
+.myplayer {
+    animation: blinker 2s linear;
+}
+
+@keyframes blinker {
+    50% { opacity: 0.0; }
+}

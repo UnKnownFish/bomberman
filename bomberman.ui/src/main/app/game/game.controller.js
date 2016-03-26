@@ -86,7 +86,8 @@ export default class GameController {
     playerClass(playerIndex) {
         if (this.model.players) {
             const player = this.model.players[playerIndex];
-            const playerClass = "player" + (playerIndex + 1);
+            const myplayer = player.id == this.model.playerId ? " myplayer" : "";
+            const playerClass = "player" + (playerIndex + 1) + myplayer;
             return (!player.dead) ? playerClass : "grave";
         }
         return null;
