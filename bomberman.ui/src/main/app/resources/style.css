@@ -56,6 +56,31 @@
     width: 32px;
     height: 32px;
     background-image: url("./img/player1.png");
+    z-index: 2;
+}
+
+.player2 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url("./img/player2.png");
+    z-index: 2;
+}
+
+.player3 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url("./img/player3.png");
+    z-index: 2;
+}
+
+.player4 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url("./img/player4.png");
+    z-index: 2;
 }
 
 .grave {
@@ -63,6 +88,7 @@
     width: 32px;
     height: 32px;
     background-image: url("./img/grave.png");
+    z-index: 1;
 }
 
 .main-wrapper {

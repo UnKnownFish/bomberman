@@ -7,6 +7,12 @@
         <div class="game">
             <div class="{{gameCtrl.playerClass(0)}}" style="{{gameCtrl.playerPositionStyle(0)}}"
                  ng-if="gameCtrl.model.players"></div>
+            <div class="{{gameCtrl.playerClass(1)}}" style="{{gameCtrl.playerPositionStyle(1)}}"
+                 ng-if="gameCtrl.model.players"></div>
+            <div class="{{gameCtrl.playerClass(2)}}" style="{{gameCtrl.playerPositionStyle(2)}}"
+                 ng-if="gameCtrl.model.players"></div>
+            <div class="{{gameCtrl.playerClass(3)}}" style="{{gameCtrl.playerPositionStyle(3)}}"
+                 ng-if="gameCtrl.model.players"></div>
             <table class="game-table">
                 <tbody>
                 <tr ng-repeat="i in gameCtrl.rangeTo(gameCtrl.model.fieldHeight)">

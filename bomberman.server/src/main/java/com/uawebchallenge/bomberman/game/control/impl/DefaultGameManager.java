@@ -28,12 +28,20 @@ public class DefaultGameManager implements GameManager {
 
     public Game createNewGame() {
         GameConfig gameConfig = new GameConfig();
+        int fieldWidth = gameConfig.getFieldWidth();
+        int fieldHeight = gameConfig.getFieldHeight();
+        GameField gameField = new GameField(fieldWidth, fieldHeight);
 
-        GameField gameField = new GameField(gameConfig.getFieldWidth(), gameConfig.getFieldHeight());
-        // TODO Add bots for the player
-        Player player = new Player(0, 0);
+        Player player1 = new Player(0, 0);
+        Player player2 = new Player(fieldWidth - 1, 0);
+        Player player3 = new Player(0, fieldHeight - 1);
+        Player player4 = new Player(fieldWidth - 1, fieldHeight - 1);
+
         List<Player> playerList = new LinkedList<>();
-        playerList.add(player);
+        playerList.add(player1);
+        playerList.add(player2);
+        playerList.add(player3);
+        playerList.add(player4);
 
         Game game = new Game(gameConfig, gameField, playerList);
         games.put(game.getGameId(), game);
