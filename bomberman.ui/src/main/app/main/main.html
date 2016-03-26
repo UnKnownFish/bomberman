@@ -1,17 +1,20 @@
-<!--<div class="container-fluid">-->
-<!--<div class="row">-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 <div class="main-wrapper">
     <div class="header"></div>
-    <!--<div class="col-md-9">-->
     <div class="text-wrapper">
-        <div class="panel panel-primary">
+        <div class="callout callout-info">
             <h4>Welcome to Bomberman application developed by Evgeny Kravchenko for <a
-                    href="http://uawebchallenge.com/">UA
+                    href="http://uawebchallenge.com/" target="_blank">UA
                 Web Challenge</a></h4>
+        </div>
+
+        <div class="callout callout-error" ng-if="mainCtrl.error">
+            <p>{{mainCtrl.error}}</p>
         </div>
     </div>
 
     <div class="button-block">
-        <button type="button" class="btn btn-primary btn-lg btn-block">START GAME</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="mainCtrl.startGame()">START GAME</button>
     </div>
 </div>

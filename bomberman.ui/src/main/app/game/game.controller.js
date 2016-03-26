@@ -1,5 +1,5 @@
 export default class GameController {
-    constructor($log, $scope, $document, gameService, gameWsClient) {
+    constructor($log, $stateParams, $scope, $document, gameConfig, gameService, gameWsClient) {
         "ngInject";
         this.log = $log;
         this.scope = $scope;
@@ -9,32 +9,16 @@ export default class GameController {
         this.gameWsClient = gameWsClient;
 
         this.model = {
-            gameId: null,
-            playerId: null,
+            gameId: $stateParams.gameId,
+            playerId: $stateParams.playerId,
+            fieldWidth: gameConfig.getFieldWidth(),
+            fieldHeight: gameConfig.getFieldHeight(),
             gameField: null,
-            fieldWidth: 0,
-            fieldHeight: 0,
             players: null
         };
 
         this.listenKeyPress();
-        this.createNewGame();
-    }
-
-    createNewGame() {
-        this.gameService.createNewGame()
-            .then((response) => {
-                this.log.info("New game was created successfully. Game details: " + JSON.stringify(response.data));
-                this.model.gameId = response.data.gameId;
-                this.model.playerId = response.data.playerId;
-                this.model.fieldHeight = response.data.fieldHeight;
-                this.model.fieldWidth = response.data.fieldWidth;
-                this.listenGameChange();
-            })
-            .catch((error) => {
-                this.log.error("Can't create new game. Error:");
-                this.log.error(error);
-            })
+        this.listenGameChange();
     }
 
     listenGameChange() {

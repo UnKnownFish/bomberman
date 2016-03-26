@@ -1,15 +1,17 @@
-<!--<div class="container-fluid">-->
-<!--<div class="row">-->
 <div class="main-wrapper">
     <div class="header"></div>
-    <!--<div class="col-md-9">-->
     <div class="text-wrapper">
-        <!--<div class="panel panel-primary">-->
+        <div class="callout callout-info">
             <h1>GAME OVER!</h1>
-        <!--</div>-->
+            <h4>You are really cool guy, try again! :)</h4>
+        </div>
+
+        <div class="callout callout-error" ng-if="gameOverCtrl.error">
+            <p>{{gameOverCtrl.error}}</p>
+        </div>
     </div>
 
     <div class="button-block">
-        <button type="button" class="btn btn-primary btn-lg btn-block">RETRY</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="gameOverCtrl.startGame()">RETRY</button>
     </div>
 </div>

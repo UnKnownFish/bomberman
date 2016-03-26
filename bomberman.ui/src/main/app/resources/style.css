@@ -14,8 +14,8 @@
     position: relative;
 }
 
-.game-table{
-    background-image: url("./img/empty.png") ;
+.game-table {
+    background-image: url("./img/empty.png");
     background-repeat: repeat;
 }
 
@@ -63,9 +63,9 @@
     width: 459px;
     margin: auto;
     position: fixed;
-    top: 50%;
+    padding-top: 50px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%);
 
 }
 
@@ -77,4 +77,21 @@
 
 .button-block {
     padding-top: 50px;
+}
+
+.callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
+.callout-info {
+    border-left-color: #1b809e;
+}
+
+.callout-error {
+    border-left-color: #FF0000;
+    color: #FF0000;
 }
