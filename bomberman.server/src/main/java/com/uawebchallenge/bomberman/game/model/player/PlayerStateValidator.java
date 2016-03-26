@@ -1,6 +1,7 @@
 package com.uawebchallenge.bomberman.game.model.player;
 
 import com.uawebchallenge.bomberman.game.model.GameConfig;
+import com.uawebchallenge.bomberman.game.model.bomb.Bomb;
 import com.uawebchallenge.bomberman.game.model.field.GameField;
 import com.uawebchallenge.bomberman.game.model.field.GameFieldItem;
 
@@ -13,7 +14,8 @@ class PlayerStateValidator {
     }
 
     private boolean isBombValid(PlayerState playerState, GameConfig gameConfig) {
-        return playerState.getBombs().size() <= gameConfig.getMaxBombs();
+        long activeBombs = playerState.getBombs().stream().filter(Bomb::isActive).count();
+        return activeBombs <= gameConfig.getMaxBombs();
     }
 
     private boolean isPositionValid(PlayerCommand playerCommand, PlayerState playerState, GameField gameField) {

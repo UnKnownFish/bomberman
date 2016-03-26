@@ -34,8 +34,8 @@ public class Bomb {
         this.explosionFootprint = explosionFootprint;
     }
 
-    public boolean hasExplosionFootprint() {
-        return explosionFootprint != null;
+    public ExplosionFootprint getExplosionFootprint() {
+        return explosionFootprint;
     }
 
     public boolean isExploding() {
