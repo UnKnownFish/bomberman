@@ -88,22 +88,25 @@ export default class GameController {
         this.document.bind("keydown", (event) => {
             switch (event.keyCode) {
                 case 37:
-                    this.move("left");
+                    this.executeCommand("left");
                     break;
                 case 38:
-                    this.move("up");
+                    this.executeCommand("up");
                     break;
                 case 39:
-                    this.move("right");
+                    this.executeCommand("right");
                     break;
                 case 40:
-                    this.move("down");
+                    this.executeCommand("down");
+                    break;
+                case 32:
+                    this.executeCommand("bomb");
                     break;
             }
         })
     }
 
-    move(command) {
+    executeCommand(command) {
         //this.gameWsClient.sendCommand(this.model.gameId, this.model.playerId, command);
         this.gameService.sendCommand(this.model.gameId, this.model.playerId, command);
     }
