@@ -48,7 +48,12 @@ public class GameMechanics {
                         p.getPlayerType() == PlayerType.HUMAN && !p.isDead() && p.getIdleIterationsCount() < game.getGameConfig().getIdleIterationsThreshold())
                 .count();
 
-        if (activeHumanPlayers == 0) {
+        long aliveBotPlayers = playerList.stream()
+                .filter(p ->
+                        p.getPlayerType() == PlayerType.AI && !p.isDead())
+                .count();
+
+        if (activeHumanPlayers == 0 || (activeHumanPlayers == 1 && aliveBotPlayers == 0)) {
             game.setOver();
         }
 
