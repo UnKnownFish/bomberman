@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>bomberman.server</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <spring-boot-dependencies.version>1.3.0.RELEASE</spring-boot-dependencies.version>
@@ -78,6 +79,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
+            </plugin>
+            <!-- SpringBoot will 'repackage' jar properly so that it could be easily executed with "java -jar" -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
