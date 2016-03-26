@@ -19,6 +19,9 @@ class ExplosionFootprintBuilder {
     private int findMinX(GameField gameField, int rangeStart, int rangeEnd, int y) {
         for (int x = rangeStart; x >= rangeEnd; x--) {
             Optional<GameFieldItem> fieldItem = gameField.getFieldItem(x, y);
+            if (isExplosionTarget(fieldItem)) {
+                return x;
+            }
             if (isExplosionForbidden(fieldItem)) {
                 return x + 1;
             }
@@ -29,6 +32,9 @@ class ExplosionFootprintBuilder {
     private int findMaxX(GameField gameField, int rangeStart, int rangeEnd, int y) {
         for (int x = rangeStart; x <= rangeEnd; x++) {
             Optional<GameFieldItem> fieldItem = gameField.getFieldItem(x, y);
+            if (isExplosionTarget(fieldItem)) {
+                return x;
+            }
             if (isExplosionForbidden(fieldItem)) {
                 return x - 1;
             }
@@ -39,6 +45,9 @@ class ExplosionFootprintBuilder {
     private int findMinY(GameField gameField, int rangeStart, int rangeEnd, int x) {
         for (int y = rangeStart; y >= rangeEnd; y--) {
             Optional<GameFieldItem> fieldItem = gameField.getFieldItem(x, y);
+            if (isExplosionTarget(fieldItem)) {
+                return y;
+            }
             if (isExplosionForbidden(fieldItem)) {
                 return y + 1;
             }
@@ -49,11 +58,18 @@ class ExplosionFootprintBuilder {
     private int findMaxY(GameField gameField, int rangeStart, int rangeEnd, int x) {
         for (int y = rangeStart; y <= rangeEnd; y++) {
             Optional<GameFieldItem> fieldItem = gameField.getFieldItem(x, y);
+            if (isExplosionTarget(fieldItem)) {
+                return y;
+            }
             if (isExplosionForbidden(fieldItem)) {
                 return y - 1;
             }
         }
         return rangeEnd;
+    }
+
+    private boolean isExplosionTarget(Optional<GameFieldItem> gameFieldItemOptional) {
+        return gameFieldItemOptional.isPresent() && gameFieldItemOptional.get() == GameFieldItem.BLOCK;
     }
 
     private boolean isExplosionForbidden(Optional<GameFieldItem> gameFieldItemOptional) {
