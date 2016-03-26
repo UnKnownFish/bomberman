@@ -2,6 +2,7 @@
     width: 459px;
     height: 118px;
     background-image: url("./img/logo.png");
+    margin: auto;
 }
 
 .game-wrapper {
@@ -11,10 +12,6 @@
 
 .game {
     position: relative;
-}
-
-.game-table{
-    background: url("./img/empty.png") repeat;
 }
 
 .item {
@@ -34,25 +31,29 @@
     background-image: url("./img/empty.png");
 }
 
-.bomb_cold {
-    background-image: url("./img/bomb_cold.png");
-}
-
-.bomb_warm {
-    background-image: url("./img/bomb_warm.png");
-}
-
-.bomb_hot {
-    background-image: url("./img/bomb_hot.png");
-}
-
-.bomb_explosion {
-    background-image: url("./img/bomb_explosion.png");
-}
-
 .player1 {
     position: absolute;
     width: 32px;
     height: 32px;
     background-image: url("./img/player1.png");
+}
+
+.main-wrapper {
+    width: 459px;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.text-wrapper {
+    color: dimgrey;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.button-block {
+    padding-top: 50px;
 }
