@@ -65,6 +65,15 @@ export default class GameController {
                 return "item block";
             case 2:
                 return "item stone";
+            case 30:
+                return "item bomb_cold";
+            case 31:
+                return "item bomb_warm";
+            case 32:
+                return "item bomb_hot";
+            case 40:
+                return "item bomb_explosion";
+
             default:
                 return null;
         }

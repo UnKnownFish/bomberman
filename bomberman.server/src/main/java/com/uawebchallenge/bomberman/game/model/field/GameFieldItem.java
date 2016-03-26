@@ -10,11 +10,10 @@ public enum GameFieldItem {
     EMPTY(0),
     BLOCK(1),
     STONE(2),
-    BOMB_TICK1(30),
-    BOMB_TICK2(31),
-    BOMB_TICK3(32),
-    EXPLOSION_TICK1(40),
-    EXPLOSION_TICK2(41),
+    BOMB_COLD(30),
+    BOMB_WARM(31),
+    BOMB_HOT(32),
+    EXPLOSION(40),
     GRAVE(5);
 
     private int itemId;

@@ -20,4 +20,10 @@ public class GameField {
         }
         return Optional.of(fieldItems[y][x]);
     }
+
+    public void setFieldItem(int x, int y, GameFieldItem fieldItem) {
+        if (y >= 0 && y < fieldItems.length && x >= 0 || x < fieldItems[y].length) {
+            fieldItems[y][x] = fieldItem;
+        }
+    }
 }

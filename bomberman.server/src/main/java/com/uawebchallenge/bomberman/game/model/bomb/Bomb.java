@@ -18,16 +18,32 @@ public class Bomb {
         this.timer = 0;
     }
 
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
     public void updateTimer() {
         timer = timer + gameConfig.getTimeBetweenFrames();
     }
 
-    public void explode(ExplosionFootprint explosionFootprint) {
+    public void setExplosionFootprint(ExplosionFootprint explosionFootprint) {
         this.explosionFootprint = explosionFootprint;
     }
 
     public boolean hasExplosionFootprint() {
         return explosionFootprint != null;
+    }
+
+    public boolean isExploding() {
+        return timer > gameConfig.getBombTickDuration();
+    }
+
+    public int getProgress() {
+        return (timer * 100) / gameConfig.getBombTickDuration();
     }
 
     public boolean isActive() {

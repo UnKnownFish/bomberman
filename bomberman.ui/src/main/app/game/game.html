@@ -2,7 +2,7 @@
 <div class="game-wrapper">
     <div class="game">
         <div class="player1" style="{{gameCtrl.playerStyle(0)}}" ng-if="gameCtrl.model.players"></div>
-        <table>
+        <table class="game-table">
             <tbody>
             <tr ng-repeat="i in gameCtrl.rangeTo(gameCtrl.model.fieldHeight)">
                 <td ng-repeat="j in gameCtrl.rangeTo(gameCtrl.model.fieldWidth)"
