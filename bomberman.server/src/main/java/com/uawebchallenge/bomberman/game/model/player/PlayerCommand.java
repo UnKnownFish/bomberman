@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Getter
@@ -17,14 +18,9 @@ public enum PlayerCommand {
 
     private String command;
 
-    public static PlayerCommand getCommand(String command) {
-        PlayerCommand playerCommand = Arrays.stream(PlayerCommand.values())
+    public static Optional<PlayerCommand> getCommand(String command) {
+        return Arrays.stream(PlayerCommand.values())
                 .filter(c -> c.getCommand().equals(command))
-                .findFirst().get();
-
-        if (playerCommand == null) {
-            throw new IllegalArgumentException(String.format("Provided string '%s' couldn't be transformed to PlayerCommand", command));
-        }
-        return playerCommand;
+                .findFirst();
     }
 }

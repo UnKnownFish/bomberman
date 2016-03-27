@@ -46,39 +46,47 @@ public class DefaultGameService implements GameService {
     }
 
     @Override
-    public void addCommand(String gameId, String playerId, PlayerCommand playerCommand) throws BombermanException {
+    public void addCommand(String gameId, String playerId, String command) throws BombermanException {
         Game game = getGame(gameId);
         Player player = getPlayer(game, playerId);
+        PlayerCommand playerCommand = getPlayerCommand(command);
         PlayerState newPlayerState = playerCommandExecutor.execute(playerCommand, player.getCurrentPlayerState(), game.getGameField(), game.getGameConfig());
         player.setNextPlayerState(newPlayerState);
     }
 
-    private Game getGame(String gameId) throws GameNotFoundException, GameIsOverException {
+    private Game getGame(String gameId) throws BombermanException {
         Optional<Game> gameOptional = gameManager.getGame(gameId);
         if (!gameOptional.isPresent()) {
-            throw new GameNotFoundException("Couldn't find running game. GameId:" + gameId);
+            throw BombermanException.gameNotFound(gameId);
         }
         Game game = gameOptional.get();
         if (game.isOver()) {
-            throw new GameIsOverException("Game is over. GameId:" + gameId);
+            throw BombermanException.gameIsOver(gameId);
         }
         return game;
     }
 
-    private Player connectPlayer(Game game) throws PlayerNotConnectedException {
+    private Player connectPlayer(Game game) throws BombermanException {
         Optional<Player> playerOptional = game.connectHuman();
         if (!playerOptional.isPresent()) {
-            throw new PlayerNotConnectedException("Couldn't connect player. GameId:" + game.getGameId());
+            throw BombermanException.playerNotConnected(game.getGameId());
         }
         return playerOptional.get();
     }
 
-    private Player getPlayer(Game game, String playerId) throws PlayerNotFoundException {
+    private Player getPlayer(Game game, String playerId) throws BombermanException {
         Optional<Player> player = game.getPlayer(playerId);
         if (!player.isPresent()) {
-            throw new PlayerNotFoundException("Player was not found. GameId:" + game.getGameId() +
-                    ". PlayerId:" + playerId);
+            throw BombermanException.playerNotFound(game.getGameId(), playerId);
         }
         return player.get();
+    }
+
+    private PlayerCommand getPlayerCommand(String command) throws BombermanException {
+        Optional<PlayerCommand> playerCommandOptional = PlayerCommand.getCommand(command);
+        if (!playerCommandOptional.isPresent()) {
+            throw BombermanException.commandNotValid(command);
+        }
+        return playerCommandOptional.get();
     }
 }

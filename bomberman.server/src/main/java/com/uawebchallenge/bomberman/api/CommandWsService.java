@@ -2,7 +2,6 @@ package com.uawebchallenge.bomberman.api;
 
 import com.uawebchallenge.bomberman.game.control.GameService;
 import com.uawebchallenge.bomberman.game.exception.BombermanException;
-import com.uawebchallenge.bomberman.game.model.player.PlayerCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +25,8 @@ public class CommandWsService {
     public void captureCommand(@DestinationVariable String gameId,
                                @DestinationVariable String playerId,
                                CommandRequest commandRequest) {
-        String command = commandRequest.getCommand();
-        PlayerCommand playerCommand = PlayerCommand.getCommand(command);
         try {
-            gameService.addCommand(gameId, playerId, playerCommand);
+            gameService.addCommand(gameId, playerId, commandRequest.getCommand());
         } catch (BombermanException e) {
             logger.error(e.getMessage());
         }

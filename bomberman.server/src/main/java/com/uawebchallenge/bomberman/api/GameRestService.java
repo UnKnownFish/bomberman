@@ -3,7 +3,6 @@ package com.uawebchallenge.bomberman.api;
 import com.uawebchallenge.bomberman.game.control.GameService;
 import com.uawebchallenge.bomberman.game.control.NewGameData;
 import com.uawebchallenge.bomberman.game.exception.BombermanException;
-import com.uawebchallenge.bomberman.game.model.player.PlayerCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +40,7 @@ public class GameRestService {
     public void addCommand(@PathVariable String gameId,
                            @PathVariable String playerId,
                            @RequestBody CommandRequest request) throws BombermanException {
-        PlayerCommand playerCommand = PlayerCommand.getCommand(request.getCommand());
-        gameService.addCommand(gameId, playerId, playerCommand);
+        gameService.addCommand(gameId, playerId, request.getCommand());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

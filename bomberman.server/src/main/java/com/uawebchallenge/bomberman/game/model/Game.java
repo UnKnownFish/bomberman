@@ -56,15 +56,14 @@ public class Game {
     }
 
     public Optional<Player> connectHuman() {
-        Player player = playerList.stream()
+        Optional<Player> playerOptional = playerList.stream()
                 .filter(p -> PlayerType.AI == p.getPlayerType())
-                .findFirst()
-                .get();
+                .findFirst();
 
-        if (player != null) {
-            player.setHuman();
+        if (playerOptional.isPresent()) {
+            playerOptional.get().setHuman();
         }
 
-        return Optional.ofNullable(player);
+        return playerOptional;
     }
 }
