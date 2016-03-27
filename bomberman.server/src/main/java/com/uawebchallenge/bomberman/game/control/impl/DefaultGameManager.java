@@ -9,10 +9,7 @@ import com.uawebchallenge.bomberman.game.model.player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class DefaultGameManager implements GameManager {
@@ -52,7 +49,7 @@ public class DefaultGameManager implements GameManager {
         gameRunner.run(game);
     }
 
-    public Game getGame(String gameId) {
-        return games.get(gameId);
+    public Optional<Game> getGame(String gameId) {
+        return Optional.ofNullable(games.get(gameId));
     }
 }

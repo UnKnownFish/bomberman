@@ -3,7 +3,7 @@ export default function routes($stateProvider) {
     $stateProvider.state('gameover', {
         url: "/gameover",
         template: require('./gameover.html'),
-        controller: 'GameOverController',
+        controller: 'MainController',
         controllerAs: 'gameOverCtrl'
     });
 }

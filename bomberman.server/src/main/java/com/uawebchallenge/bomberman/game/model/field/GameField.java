@@ -19,7 +19,7 @@ public class GameField {
         if (y < 0 || y >= fieldItems.length || x < 0 || x >= fieldItems[y].length) {
             return Optional.empty();
         }
-        return Optional.of(fieldItems[y][x]);
+        return Optional.ofNullable(fieldItems[y][x]);
     }
 
     public void setFieldItem(int x, int y, GameFieldItem fieldItem) {

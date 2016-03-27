@@ -22,10 +22,7 @@ export default class MainController {
                 this.location.path(url);
             })
             .catch((response) => {
-                this.log.error("Can't create new game. Error:");
-                this.log.error(response);
-                this.error = "Unfortunately connection to game server couldn't be established. " +
-                    "Please contact yevgen.kravchenko@gmail.com"
+                this.handleError(response);
             })
     }
 
@@ -42,10 +39,20 @@ export default class MainController {
                 this.location.path(url);
             })
             .catch((response) => {
-                this.log.error("Can't connect to game. GameId=" + gameId + ". Error:");
-                this.log.error(response);
-                this.error = "Unfortunately connection to game server couldn't be established. " +
-                    "Please contact yevgen.kravchenko@gmail.com"
+                this.handleError(response);
             })
+    }
+
+    handleError(response) {
+        this.log.error("Error:");
+        this.log.error(response);
+
+        if (response.data) {
+            this.error = response.data.message;
+        }
+        else {
+            this.error = "Unfortunately connection to game server couldn't be established. " +
+                "Please contact yevgen.kravchenko@gmail.com"
+        }
     }
 }

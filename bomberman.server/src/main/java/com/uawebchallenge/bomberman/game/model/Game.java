@@ -7,6 +7,7 @@ import com.uawebchallenge.bomberman.game.utils.IdGenerator;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Game {
@@ -50,23 +51,20 @@ public class Game {
         return playerList;
     }
 
-    public Player getPlayer(String playerId) {
-        return playerMap.get(playerId);
+    public Optional<Player> getPlayer(String playerId) {
+        return Optional.ofNullable(playerMap.get(playerId));
     }
 
-    public Player connectHuman() {
+    public Optional<Player> connectHuman() {
         Player player = playerList.stream()
                 .filter(p -> PlayerType.AI == p.getPlayerType())
                 .findFirst()
                 .get();
 
-        if (player == null) {
-            // So far game is only expecting 1 player to play it. But it will be very easy for other player to join same game
-            // When I get to it - I will change code to use Optional<T> instead of throwing exception
-            throw new IllegalStateException("There are no free players in this game. GameId=" + gameId);
+        if (player != null) {
+            player.setHuman();
         }
 
-        player.setHuman();
-        return player;
+        return Optional.ofNullable(player);
     }
 }
