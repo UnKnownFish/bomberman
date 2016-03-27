@@ -20,7 +20,8 @@ export default class GameController {
             gameField: null,
             players: null,
             maxBombs: 1,
-            humanPlayers: null
+            humanPlayers: null,
+            gameOver: false
         };
 
         this.listenKeyPress();
@@ -36,6 +37,7 @@ export default class GameController {
             this.scope.$digest();
 
             if (data.gameOver || this.isPlayerDead()) {
+                this.model.gameOver = true;
                 this.log.debug("GameOver: " + data.gameOver);
                 this.log.debug("isPlayerDead: " + this.isPlayerDead());
                 this.gameOver();
@@ -101,25 +103,28 @@ export default class GameController {
 
 
     listenKeyPress() {
-        this.document.bind("keydown", (event) => {
-            switch (event.keyCode) {
-                case 37:
-                    this.executeCommand("left");
-                    break;
-                case 38:
-                    this.executeCommand("up");
-                    break;
-                case 39:
-                    this.executeCommand("right");
-                    break;
-                case 40:
-                    this.executeCommand("down");
-                    break;
-                case 32:
-                    this.executeCommand("bomb");
-                    break;
-            }
-        })
+        this.keyPressFunction = this.onKeyPress.bind(this);
+        this.document.bind("keydown", this.keyPressFunction);
+    }
+
+    onKeyPress(event) {
+        switch (event.keyCode) {
+            case 37:
+                this.executeCommand("left");
+                break;
+            case 38:
+                this.executeCommand("up");
+                break;
+            case 39:
+                this.executeCommand("right");
+                break;
+            case 40:
+                this.executeCommand("down");
+                break;
+            case 32:
+                this.executeCommand("bomb");
+                break;
+        }
     }
 
     executeCommand(command) {
@@ -128,6 +133,7 @@ export default class GameController {
     }
 
     gameOver() {
+        this.document.unbind("keydown", this.keyPressFunction);
         this.gameWsClient.unlisten(this.model.gameId);
 
         this.timeout(() => {
