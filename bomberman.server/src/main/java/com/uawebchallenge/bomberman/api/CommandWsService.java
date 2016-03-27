@@ -14,7 +14,7 @@ public class CommandWsService {
 
     private final GameService gameService;
 
-    private Logger logger = LoggerFactory.getLogger(CommandWsService.class);
+    private final Logger logger = LoggerFactory.getLogger(CommandWsService.class);
 
     @Autowired
     public CommandWsService(GameService gameService) {
