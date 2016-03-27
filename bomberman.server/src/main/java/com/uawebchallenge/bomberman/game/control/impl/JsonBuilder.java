@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.uawebchallenge.bomberman.game.model.Game;
 import com.uawebchallenge.bomberman.game.model.field.GameFieldItem;
 import com.uawebchallenge.bomberman.game.model.player.Player;
+import com.uawebchallenge.bomberman.game.model.player.PlayerType;
 import lombok.Value;
 
 import java.io.IOException;
@@ -60,6 +61,9 @@ class JsonBuilder {
         @JsonProperty("maxBombs")
         private final int maxBombs;
 
+        @JsonProperty("humanPlayers")
+        private final int humanPlayers;
+
         public GameJsonView(Game game) {
             this.fieldItems = game.getGameField().getFieldItems();
 
@@ -69,6 +73,7 @@ class JsonBuilder {
                     .collect(Collectors.toList());
             this.gameOver = game.isOver();
             this.maxBombs = game.getGameConfig().getMaxBombs();
+            this.humanPlayers = (int) playerList.stream().filter(p -> PlayerType.HUMAN == p.getPlayerType()).count();
         }
     }
 }
