@@ -1,6 +1,14 @@
 <div class="main-wrapper">
     <div class="header"></div>
     <div class="game-wrapper">
+        <div style="color: dimgrey">
+            <p style="vertical-align: middle">
+                <span><b>GameID:</b> {{gameCtrl.model.gameId}} </span>
+                <i class="material-icons copy-icon" ng-click="gameCtrl.copyGameId()">content_copy</i>
+            </p>
+            <p><b>Connected players:</b> {{gameCtrl.model.humanPlayers}}</p>
+        </div>
+
         <div class="bomb-indicator" style="{{gameCtrl.bombIndicatorWidthStyle()}}">
         </div>
 

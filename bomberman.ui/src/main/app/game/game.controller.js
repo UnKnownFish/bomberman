@@ -1,3 +1,5 @@
+import clipboard from "clipboard-js";
+
 export default class GameController {
     constructor($log, $stateParams, $scope, $document, $location, $timeout, gameConfig, gameService, gameWsClient) {
         "ngInject";
@@ -17,7 +19,8 @@ export default class GameController {
             fieldHeight: gameConfig.getFieldHeight(),
             gameField: null,
             players: null,
-            maxBombs: 1
+            maxBombs: 1,
+            humanPlayers: null
         };
 
         this.listenKeyPress();
@@ -29,6 +32,7 @@ export default class GameController {
             this.model.gameField = data.field;
             this.model.players = data.players;
             this.model.maxBombs = data.maxBombs;
+            this.model.humanPlayers = data.humanPlayers;
             this.scope.$digest();
 
             if (data.gameOver || this.isPlayerDead()) {
@@ -137,5 +141,9 @@ export default class GameController {
             return p.id == this.model.playerId
         })[0];
         return player.dead;
+    }
+
+    copyGameId() {
+        clipboard.copy(this.model.gameId);
     }
 }

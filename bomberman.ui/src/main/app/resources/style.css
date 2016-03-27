@@ -1,8 +1,17 @@
 .header {
-    width: 459px;
-    height: 118px;
+    width: 460px;
+    height: 120px;
     background-image: url("./img/logo.png");
     margin: auto;
+}
+
+.main-wrapper {
+    width: 460px;
+    margin: auto;
+    position: fixed;
+    padding-top: 40px;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .game-wrapper {
@@ -91,32 +100,23 @@
     z-index: 1;
 }
 
-.main-wrapper {
-    width: 459px;
-    margin: auto;
-    position: fixed;
-    padding-top: 50px;
-    left: 50%;
-    transform: translate(-50%);
-
-}
-
 .text-wrapper {
     color: dimgrey;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .button-block {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .callout {
-    padding: 20px;
-    margin: 20px 0;
+    padding: 10px;
+    margin: 10px 0;
     border: 1px solid #eee;
     border-left-width: 5px;
     border-radius: 3px;
+    color: dimgrey;
 }
 
 .callout-info {
@@ -134,10 +134,18 @@
     background: url("./img/bomb_indicator.png") repeat-x;
 }
 
+.copy-icon {
+    font-weight: 500;
+    font-size: large;
+    cursor: pointer;
+}
+
 .myplayer {
     animation: blinker 2s linear;
 }
 
 @keyframes blinker {
-    50% { opacity: 0.0; }
+    50% {
+        opacity: 0.0;
+    }
 }
