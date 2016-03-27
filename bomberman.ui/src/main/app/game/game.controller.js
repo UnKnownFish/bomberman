@@ -36,6 +36,8 @@ export default class GameController {
             this.scope.$digest();
 
             if (data.gameOver || this.isPlayerDead()) {
+                this.log.debug("GameOver: " + data.gameOver);
+                this.log.debug("isPlayerDead: " + this.isPlayerDead());
                 this.gameOver();
             }
         });
@@ -126,6 +128,8 @@ export default class GameController {
     }
 
     gameOver() {
+        this.gameWsClient.unlisten(this.model.gameId);
+
         this.timeout(() => {
             this.location.path("/gameover");
         }, 2500);

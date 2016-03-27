@@ -42,14 +42,29 @@ export default class GameWsClient {
 
         this.connectionPromise.then(
             ()=> {
+                this.log.debug("Subscribing to topic: " + topicId);
+
+                const headers = {
+                    id: gameId
+                };
+
                 this.client.subscribe(topicId, function (result) {
                     callback(JSON.parse(JSON.parse(result.body)));
-                });
+                }, headers);
             });
     }
 
+    unlisten(gameId) {
+        const topicId = "/topic/" + gameId;
+
+        if (this.connected) {
+            this.log.debug("Unsubscribing from topic: " + topicId);
+            this.client.unsubscribe(gameId);
+        }
+    }
+
     sendCommand(gameId, playerId, commandCode) {
-        if(this.connected) {
+        if (this.connected) {
             const url = "/ws/game/" + gameId + "/player/" + playerId + "/command";
             const command = {
                 command: commandCode
