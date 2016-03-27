@@ -11,6 +11,10 @@ public class GameField {
         this.fieldItems = GameFieldGenerator.generateGameField(width, height);
     }
 
+    public GameField(GameFieldItem[][] fieldItems) {
+        this.fieldItems = fieldItems;
+    }
+
     public GameFieldItem[][] getFieldItems() {
         return fieldItems;
     }
@@ -23,7 +27,7 @@ public class GameField {
     }
 
     public void setFieldItem(int x, int y, GameFieldItem fieldItem) {
-        if (y >= 0 && y < fieldItems.length && x >= 0 || x < fieldItems[y].length) {
+        if (y >= 0 && y < fieldItems.length && x >= 0 && x < fieldItems[y].length) {
             fieldItems[y][x] = fieldItem;
         }
     }
