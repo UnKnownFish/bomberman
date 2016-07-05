@@ -8,7 +8,7 @@ import java.util.List;
 
 class PlayerStateChanger {
 
-    PlayerState change(PlayerCommand playerCommand, PlayerState oldPlayerState, GameConfig gameConfig) {
+    public PlayerState change(PlayerCommand playerCommand, PlayerState oldPlayerState, GameConfig gameConfig) {
         double distance = gameConfig.getTimeBetweenFrames() * gameConfig.getPlayerSpeed();
 
         double x = oldPlayerState.getPositionX();

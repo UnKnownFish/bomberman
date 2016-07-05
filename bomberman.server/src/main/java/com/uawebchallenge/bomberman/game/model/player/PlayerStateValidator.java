@@ -9,7 +9,7 @@ import java.util.Optional;
 
 class PlayerStateValidator {
 
-    boolean isStateValid(PlayerCommand playerCommand, PlayerState playerState, GameField gameField, GameConfig gameConfig) {
+    public boolean isStateValid(PlayerCommand playerCommand, PlayerState playerState, GameField gameField, GameConfig gameConfig) {
         return isBombValid(playerState, gameConfig) && isPositionValid(playerCommand, playerState, gameField);
     }
 
